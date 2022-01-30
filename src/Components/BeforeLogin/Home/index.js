@@ -8,7 +8,7 @@ import {
   InfoContainer,
   InfoRow,
   InfoWrapper,
-  SubTiltle,
+  SubTitle,
   TextWrapper,
   TopLine,
 } from "./HomeElements";
@@ -16,6 +16,7 @@ import React from "react";
 
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import CustomBtn from "../Main/CustomBtn";
 
 const Home = ({
   matches,
@@ -37,14 +38,15 @@ const Home = ({
               <TextWrapper>
                 <TopLine>{topLine}</TopLine>
                 <Heading>{headLine}</Heading>
-                <SubTiltle>{description}</SubTiltle>
+                <SubTitle>{description}</SubTitle>
                 <BtnWrap>
-                <Stack spacing={3} direction='row'>
-                  <Button variant='contained'>Text</Button>
-                  <Button variant='contained'>Contained</Button>
-                </Stack>
+                  <Stack spacing={3} direction="row">
+                    <CustomBtn>{"Find a Bee"}</CustomBtn>
+                    <CustomBtn>{"Need a Job?"}</CustomBtn>
+                    {/* <Button variant="contained">Text</Button>
+                    <Button variant="contained">Contained</Button> */}
+                  </Stack>
                 </BtnWrap>
-                
               </TextWrapper>
             </Column1>
             <Column2>

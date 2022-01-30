@@ -4,25 +4,22 @@ import {
   IconButton,
   Typography,
   Button,
- 
   Menu,
   MenuItem,
-
 } from "@mui/material";
 
 import { Box } from "@mui/system";
 
 import DrawerComponent from "./DrawerComponent";
 import MenuIcon from "@mui/icons-material/Menu";
+import CustomBtn from "../Main/CustomBtn";
 
-const Navbar = ({matches}) => {
+const Navbar = ({ matches }) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [openDrawer, setOpenDrawer] = useState(false); 
- 
-
+  const [openDrawer, setOpenDrawer] = useState(false);
 
   const openMenu = Boolean(anchorEl);
-  const handleClick = e => {
+  const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
   };
   const handleClose = () => {
@@ -30,7 +27,7 @@ const Navbar = ({matches}) => {
   };
   return (
     <>
-      <Box   elevation={0} sx={{ backgroundColor: "white"}}>
+      <Box elevation={0} sx={{ backgroundColor: "white" }}>
         <Toolbar>
           <Box
             sx={{
@@ -38,18 +35,18 @@ const Navbar = ({matches}) => {
               justifyContent: "space-between",
               alignItems: "center",
               width: "100%",
-              padding: "10px 0px ",
+              padding: "20px 10px",
             }}
             component="div"
           >
             {/* logo */}
             <Box>
-              <IconButton>
-              <Typography sx={{ fontSize: "2.4rem" }}>
+              <Typography
+                className="navIcon"
+                sx={{ fontSize: "2.4rem", color: "#616161" }}
+              >
                 HUSTLEBEE
               </Typography>
-               
-              </IconButton>
             </Box>
 
             {/* Links */}
@@ -59,7 +56,7 @@ const Navbar = ({matches}) => {
                 setOpenDrawer={setOpenDrawer}
               />
             ) : (
-              <Box sx={{ display: "flex"  }}>
+              <Box sx={{ display: "flex" }}>
                 <Typography
                   sx={{
                     marginRight: "20px",
@@ -67,7 +64,7 @@ const Navbar = ({matches}) => {
                     color: "#ca3838",
                   }}
                 >
-              HOME
+                  HOME
                 </Typography>
 
                 <Typography
@@ -77,7 +74,7 @@ const Navbar = ({matches}) => {
                     color: "#616161",
                   }}
                 >
-               BROWSE JOB
+                  BROWSE JOB
                 </Typography>
                 <Typography
                   sx={{
@@ -90,7 +87,7 @@ const Navbar = ({matches}) => {
                   aria-expanded={openMenu ? "true" : undefined}
                   onClick={handleClick}
                 >
-                 CATEGORIES
+                  CATEGORIES
                 </Typography>
                 {/* Dropdown Items */}
                 <Menu
@@ -100,10 +97,8 @@ const Navbar = ({matches}) => {
                   onClose={handleClose}
                 >
                   <MenuItem onClick={handleClose}>HELLO</MenuItem>
-                
                 </Menu>
-             
-           
+
                 <Typography
                   sx={{
                     marginRight: "20px",
@@ -111,7 +106,7 @@ const Navbar = ({matches}) => {
                     color: "#616161",
                   }}
                 >
-               CONTACT
+                  CONTACT
                 </Typography>
               </Box>
             )}
@@ -122,31 +117,40 @@ const Navbar = ({matches}) => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-              }}>   
-             {!matches ? (
-               <Box >
-               <Button
-                  sx={{ background: "#ffdf00",color:"#000", marginLeft: "10px" }}
-                  disableElevation
-                  variant="contained"
-                >
-                 Sign Up
-                </Button>
+              }}
+            >
+              {!matches ? (
+                <Box>
+                  <CustomBtn
+                    sx={{
+                      background: "#ffdf00",
+                      color: "#000",
+                      marginLeft: "10px",
+                      "&:hover": {
+                        background: "#FFBE0B",
+                      },
+                    }}
+                  >
+                    Sign Up
+                  </CustomBtn>
 
-                 <Button
-                 sx={{ background: "#ffdf00",color:"#000", marginLeft: "10px" }}
-                 disableElevation
-                 variant="contained"
-               >
-               Log In
-               </Button>
-               </Box>
-                  
-              ) : (<IconButton onClick={() => setOpenDrawer(true)}>
-              <MenuIcon />
-            </IconButton>
-               
-             
+                  <CustomBtn
+                    sx={{
+                      background: "#ffdf00",
+                      color: "#000",
+                      marginLeft: "10px",
+                      "&:hover": {
+                        background: "#FFBE0B",
+                      },
+                    }}
+                  >
+                    Log In
+                  </CustomBtn>
+                </Box>
+              ) : (
+                <IconButton size="large"  onClick={() => setOpenDrawer(true)}>
+                  <MenuIcon fontSize="inherit" />
+                </IconButton>
               )}
             </Box>
           </Box>
