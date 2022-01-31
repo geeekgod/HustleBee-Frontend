@@ -19,18 +19,18 @@ const DrawerComponent = ({ openDrawer, setOpenDrawer }) => {
     >
       <List>
         <ListItem divider button onClick={() => setOpenDrawer(false)}>
-          <ListItemIcon sx={{ mx: 5 }}>
-            <ListItemText>HOME</ListItemText>
+          <ListItemIcon sx={{ px: 5 }}>
+            <ListItemText>Home</ListItemText>
           </ListItemIcon>
         </ListItem>
         <ListItem divider button onClick={() => setOpenDrawer(false)}>
           <ListItemIcon sx={{ px: 5 }}>
-            <ListItemText>BROWSE JOB</ListItemText>
+            <ListItemText>Browse Jobs</ListItemText>
           </ListItemIcon>
         </ListItem>
         <ListItem divider button onClick={() => setOpenDrawer(false)}>
           <ListItemIcon sx={{ px: 5 }}>
-            <ListItemText>CONTACT</ListItemText>
+            <ListItemText>Contact</ListItemText>
           </ListItemIcon>
         </ListItem>
       </List>

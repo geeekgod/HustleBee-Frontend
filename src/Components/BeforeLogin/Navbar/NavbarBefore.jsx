@@ -3,7 +3,6 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Button,
   Menu,
   MenuItem,
 } from "@mui/material";
@@ -45,7 +44,7 @@ const Navbar = ({ matches }) => {
                 className="navIcon"
                 sx={{ fontSize: "2.4rem", color: "#616161" }}
               >
-                HUSTLEBEE
+                HustleBee 🐝
               </Typography>
             </Box>
 
@@ -61,10 +60,10 @@ const Navbar = ({ matches }) => {
                   sx={{
                     marginRight: "20px",
                     cursor: "pointer",
-                    color: "#ca3838",
+                    color: "#616161",
                   }}
                 >
-                  HOME
+                  Home
                 </Typography>
 
                 <Typography
@@ -74,7 +73,7 @@ const Navbar = ({ matches }) => {
                     color: "#616161",
                   }}
                 >
-                  BROWSE JOB
+                  Browse Jobs
                 </Typography>
                 <Typography
                   sx={{
@@ -87,7 +86,7 @@ const Navbar = ({ matches }) => {
                   aria-expanded={openMenu ? "true" : undefined}
                   onClick={handleClick}
                 >
-                  CATEGORIES
+                  Categories
                 </Typography>
                 {/* Dropdown Items */}
                 <Menu
@@ -95,8 +94,27 @@ const Navbar = ({ matches }) => {
                   anchorEl={anchorEl}
                   open={openMenu}
                   onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "center",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "center",
+                  }}
                 >
-                  <MenuItem onClick={handleClose}>HELLO</MenuItem>
+                  <MenuItem sx={{ padding: "10px 40px" }} onClick={handleClose}>
+                    FullTime
+                  </MenuItem>
+                  <MenuItem sx={{ padding: "10px 40px" }} onClick={handleClose}>
+                    PartTime
+                  </MenuItem>
+                  <MenuItem sx={{ padding: "10px 40px" }} onClick={handleClose}>
+                    Internship
+                  </MenuItem>
+                  <MenuItem sx={{ padding: "10px 40px" }} onClick={handleClose}>
+                    Freelance
+                  </MenuItem>
                 </Menu>
 
                 <Typography
@@ -106,7 +124,7 @@ const Navbar = ({ matches }) => {
                     color: "#616161",
                   }}
                 >
-                  CONTACT
+                  Contact
                 </Typography>
               </Box>
             )}
@@ -123,11 +141,11 @@ const Navbar = ({ matches }) => {
                 <Box>
                   <CustomBtn
                     sx={{
-                      background: "#ffdf00",
+                      background: "#FEEA00",
                       color: "#000",
                       marginLeft: "10px",
                       "&:hover": {
-                        background: "#FFBE0B",
+                        background: "#ffdf00",
                       },
                     }}
                   >
@@ -136,11 +154,11 @@ const Navbar = ({ matches }) => {
 
                   <CustomBtn
                     sx={{
-                      background: "#ffdf00",
+                      background: "#FEEA00",
                       color: "#000",
                       marginLeft: "10px",
                       "&:hover": {
-                        background: "#FFBE0B",
+                        background: "#ffdf00",
                       },
                     }}
                   >
@@ -148,7 +166,7 @@ const Navbar = ({ matches }) => {
                   </CustomBtn>
                 </Box>
               ) : (
-                <IconButton size="large"  onClick={() => setOpenDrawer(true)}>
+                <IconButton size="large" onClick={() => setOpenDrawer(true)}>
                   <MenuIcon fontSize="inherit" />
                 </IconButton>
               )}

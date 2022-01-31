@@ -17,7 +17,7 @@ export const InfoWrapper = styled.div`
   margin-left: auto;
   padding: 0 24px;
   justify-content: center;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1200px) {
     padding: 0;
   }
 `;
@@ -51,7 +51,7 @@ export const TextWrapper = styled.div`
 `;
 
 export const TopLine = styled.p`
-  color: #01bf71;
+  color: #2667FF;
   font-size: 16px;
   text-align: left;
   margin-top: 2rem;
