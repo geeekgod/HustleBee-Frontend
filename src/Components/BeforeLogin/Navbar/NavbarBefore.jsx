@@ -88,34 +88,7 @@ const Navbar = ({ matches }) => {
                 >
                   Categories
                 </Typography>
-                {/* Dropdown Items */}
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={openMenu}
-                  onClose={handleClose}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "center",
-                  }}
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "center",
-                  }}
-                >
-                  <MenuItem sx={{ padding: "10px 40px" }} onClick={handleClose}>
-                    FullTime
-                  </MenuItem>
-                  <MenuItem sx={{ padding: "10px 40px" }} onClick={handleClose}>
-                    PartTime
-                  </MenuItem>
-                  <MenuItem sx={{ padding: "10px 40px" }} onClick={handleClose}>
-                    Internship
-                  </MenuItem>
-                  <MenuItem sx={{ padding: "10px 40px" }} onClick={handleClose}>
-                    Freelance
-                  </MenuItem>
-                </Menu>
+             
 
                 <Typography
                   sx={{
