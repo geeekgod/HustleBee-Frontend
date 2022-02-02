@@ -11,11 +11,11 @@ import {
   SubTitle,
   TextWrapper,
   TopLine,
-} from "./HomeElements";
+} from "./LandingElements";
 import React from "react";
 
 import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
+
 import CustomBtn from "../Main/CustomBtn";
 
 const Home = ({

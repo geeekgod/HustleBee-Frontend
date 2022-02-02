@@ -1,9 +1,10 @@
 // import { useMediaQuery, useTheme } from '@mui/material';
 import "./App.css";
-import Home from "./Components/BeforeLogin/Home";
+import LandingPg from "./Components/BeforeLogin/LandingPg";
 import NavbarBefore from "./Components/BeforeLogin/Navbar/NavbarBefore";
-import { beforeHomeObj } from "./Components/BeforeLogin/Home/Data";
+import { beforeHomeObj } from "./Components/BeforeLogin/LandingPg/Data";
 import { useMediaQuery, useTheme } from "@mui/material";
+import Categories from "./Components/BeforeLogin/Categories";
 
 function App() {
   //theme instance
@@ -13,7 +14,8 @@ function App() {
     <div className="App">
       <>
         <NavbarBefore matches={matches} />
-        <Home {...beforeHomeObj} />
+        <LandingPg {...beforeHomeObj} />
+        <Categories/>
       </>
     </div>
   );
