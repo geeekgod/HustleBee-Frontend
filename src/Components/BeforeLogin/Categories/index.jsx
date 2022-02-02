@@ -1,22 +1,34 @@
-import React from 'react';
+import React from "react";
+import { Box, Card, Cards, CategoriesWrapper, Content, Icon } from "./CategoriesElements";
 
-import { Box } from "@mui/system";
-import { CategoriesWrapper } from './CategoriesElements';
 const Categories = () => {
   return (
-      <>
+    <>
       <Box>
-          <CategoriesWrapper>
-              {/* <Cards>
-                  <Card>
-
-                  </Card>
-
-              </Cards> */}
-          </CategoriesWrapper>
+        <h1>Choose Your Desire Category</h1>
+        <CategoriesWrapper>
+          <Cards>
+            <Card>
+              <Icon>
+                   hey
+              </Icon>
+              <Content>
+                  thhskal
+              </Content>
+            </Card>
+            <Card>
+              <h1>heyy </h1>
+            </Card>
+            <Card>
+              <h1>heyy </h1>
+            </Card>
+            <Card>
+              <h1>heyy </h1>
+            </Card>
+          </Cards>
+        </CategoriesWrapper>
       </Box>
-      
-      </>
+    </>
   );
 };
 
