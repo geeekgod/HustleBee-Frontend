@@ -6,6 +6,7 @@ import { beforeHomeObj } from "./Components/BeforeLogin/LandingPg/Data";
 import { useMediaQuery, useTheme } from "@mui/material";
 import Categories from "./Components/BeforeLogin/Categories";
 import LandingCTA from "./Components/BeforeLogin/LandingCTA";
+import Footer from "./Components/BeforeLogin/Footer";
 
 function App() {
   //theme instance
@@ -18,6 +19,7 @@ function App() {
         <LandingPg {...beforeHomeObj} />
         <Categories/>
         <LandingCTA/>
+        <Footer/>
       </>
     </div>
   );
