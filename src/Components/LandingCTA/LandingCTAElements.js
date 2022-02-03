@@ -29,8 +29,14 @@ background-color: #2667FF;
   `
    export const Small=styled.h5`
    color:white;
-   text-align:center;
-   margin: 10px 10px 0 10px;
+   white-space:nowrap;
+   display:flex;
+justify-content:center;
+align-items:center;
+   /* text-align:center;
+   justify-content:center; */
+   /* bottom:10px; */
+   /* margin: 10px 10px 0 10px; */
  
    `
   export const BtnWrapper=styled.div`

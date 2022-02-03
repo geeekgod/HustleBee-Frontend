@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 border-radius:5px;
 background:${({primary})=>(primary ? '#fff' : '#2667FF')};
 white-space:nowrap;
-padding: 10px 25px;
+padding: 16px 25px;
 color:${({dark})=>(dark ? '#2667FF' : '#fff')};
 font-size: large;
 

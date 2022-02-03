@@ -5,7 +5,8 @@ import CtaButton from "../BeforeLogin/Main/CtaButtons";
 import {
   LandingContainer,
   LandingWrapper,
-  Heading,Small,
+  Heading,
+  Small,
   BtnWrapper,
 } from "./LandingCTAElements";
 
@@ -18,13 +19,15 @@ const LandingCTA = () => {
             Join HustleBee to unleash the world’s untapped human potential
           </Heading>
           <BtnWrapper>
-          <Stack spacing={3} direction="row"> 
-            <CtaButton primary={true} dark={true} white={true}>
-           Hire a Bee
-            </CtaButton>
-            
-            <Small> Or</Small>
-            <CtaButton white={true}> Apply as a Bee</CtaButton>
+            <Stack
+              direction={{ xs: "column", md: "row" }}
+              spacing={2}
+            >
+              <CtaButton primary={true} dark={true} white={true}>
+                Hire a Bee
+              </CtaButton>
+              < Small>OR</ Small>
+              <CtaButton white={true}> Apply as a Bee</CtaButton>
             </Stack>
           </BtnWrapper>
         </LandingWrapper>
