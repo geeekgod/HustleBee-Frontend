@@ -13,16 +13,20 @@ const Categories = () => {
   return (
     <>
       <Box>
-        <h1 style={{ textAlign: "center" }}>Choose Your Desired Category</h1>
+       
         <p
           style={{
-            fontSize: 19,
-            color: "rgba(0,0,0,0.7)",
+            fontSize:16,
+            color: "#2667FF",
             textAlign: "center",
+            textTransform:"uppercase",
+            fontWeight:"700",
+            letterSpacing:"1.4px"
           }}
         >
           Jobs based on your desired category
         </p>
+        <h1 style={{ textAlign: "center" }}>Choose Your Desired Category</h1>
         <CategoriesWrapper id="categories">
           <Cards>
             {categoriesData &&
