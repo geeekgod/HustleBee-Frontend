@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 
+
  const  CtaButton = styled.div`
 border-radius:5px;
 background:${({primary})=>(primary ? '#fff' : '#2667FF')};
