@@ -17,7 +17,7 @@ code {
 }
 
 button.MuiButton-root {
-  border-radius: 25px;
+  border-radius:5px;
   padding: 10px 25px;
   text-transform: none !important;
   transition: ease-out 0.25s !important;

@@ -23,7 +23,7 @@ const Categories = () => {
         >
           Jobs based on your desired category
         </p>
-        <CategoriesWrapper>
+        <CategoriesWrapper id="categories">
           <Cards>
             {categoriesData &&
               categoriesData.categories.map((i) => {

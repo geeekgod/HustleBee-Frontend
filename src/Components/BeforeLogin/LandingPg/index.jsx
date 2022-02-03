@@ -16,7 +16,7 @@ import React from "react";
 
 import Stack from "@mui/material/Stack";
 
-import CustomBtn from "../Main/CustomBtn";
+import CtaButton from "../Main/CtaButtons";
 
 const Home = ({
   matches,
@@ -41,8 +41,12 @@ const Home = ({
                 <SubTitle>{description}</SubTitle>
                 <BtnWrap>
                   <Stack spacing={3} direction="row">
-                    <CustomBtn>{"Find a Bee"}</CustomBtn>
-                    <CustomBtn>{"Need a Job?"}</CustomBtn>
+                    <CtaButton>{"Find a Bee"}</CtaButton >
+                    
+                    <CtaButton
+                     primary={true}
+                     dark={true}
+                     white={false} >{"Need a Job?"}</CtaButton >
                     {/* <Button variant="contained">Text</Button>
                     <Button variant="contained">Contained</Button> */}
                   </Stack>
