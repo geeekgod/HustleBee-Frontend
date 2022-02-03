@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  Toolbar,
-  IconButton,
-  Typography,
-  Menu,
-  MenuItem,
-} from "@mui/material";
+import { Toolbar, IconButton, Typography, Menu, MenuItem } from "@mui/material";
 
 import { Box } from "@mui/system";
 
@@ -36,12 +30,12 @@ const Navbar = ({ matches }) => {
               width: "100%",
               padding: "20px 10px",
             }}
-            component="div"
+            component='div'
           >
             {/* logo */}
             <Box>
               <Typography
-                className="navIcon"
+                className='navIcon'
                 sx={{ fontSize: "2.4rem", color: "#616161" }}
               >
                 HustleBee 🐝
@@ -75,20 +69,21 @@ const Navbar = ({ matches }) => {
                 >
                   Browse Jobs
                 </Typography>
-                <Typography
-                  sx={{
-                    marginRight: "20px",
-                    cursor: "pointer",
-                    color: "#616161",
-                  }}
-                  aria-controls="basic-menu"
-                  aria-haspopup="true"
-                  aria-expanded={openMenu ? "true" : undefined}
-                  onClick={handleClick}
-                >
-                  Categories
-                </Typography>
-             
+                <a href='#categories'>
+                  <Typography
+                    sx={{
+                      marginRight: "20px",
+                      cursor: "pointer",
+                      color: "#616161",
+                    }}
+                    aria-controls='basic-menu'
+                    aria-haspopup='true'
+                    aria-expanded={openMenu ? "true" : undefined}
+                    onClick={handleClick}
+                  >
+                    Categories
+                  </Typography>
+                </a>
 
                 <Typography
                   sx={{
@@ -112,6 +107,7 @@ const Navbar = ({ matches }) => {
             >
               {!matches ? (
                 <Box>
+                  
                   <CustomBtn
                     sx={{
                       background: "#FEEA00",
@@ -139,8 +135,8 @@ const Navbar = ({ matches }) => {
                   </CustomBtn>
                 </Box>
               ) : (
-                <IconButton size="large" onClick={() => setOpenDrawer(true)}>
-                  <MenuIcon fontSize="inherit" />
+                <IconButton size='large' onClick={() => setOpenDrawer(true)}>
+                  <MenuIcon fontSize='inherit' />
                 </IconButton>
               )}
             </Box>

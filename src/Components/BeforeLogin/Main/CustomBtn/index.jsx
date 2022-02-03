@@ -12,3 +12,4 @@ const CustomBtn = (props) => {
 };
 
 export default CustomBtn;
+// for all the react scroll buttons 
