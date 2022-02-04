@@ -51,20 +51,20 @@ color:#fff;
 }`;
 
 export const FooterLinkTitle=styled.h1`
-font-size:14px;
+font-size:1rem;
 margin-bottom:16px;
 
-color:#101522;
+ color:#000;
 `;
 export const FooterLink=styled.a`
-color:#101522;
+color:#000;
 text-decoration:none;
 margin-bottom:0.5rem;
-font-size:14px;
+font-size:16px;
 margin-bottom:1rem;
 
 &:hover{
-    color:#101522;
+    color:#2667FF;
     transition:0.3s ease-out;
 }`;
 
@@ -97,9 +97,9 @@ align-items:center;
 
 font-weight:bold;`
 
-export const WebsiteRights = styled.small`
-color:#101522;
-margin-bottom:16px;
+export const WebsiteRights = styled.h5`
+color:#000;
+margin-bottom:1rem;
 align-items:center;
 justify-content:center;`;
 

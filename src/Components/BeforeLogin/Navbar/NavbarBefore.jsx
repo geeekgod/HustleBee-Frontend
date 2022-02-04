@@ -36,9 +36,9 @@ const Navbar = ({ matches }) => {
             <Box>
               <Typography
                 className='navIcon'
-                sx={{ fontSize: "2.4rem", color: "#616161" }}
+                sx={{ fontSize: "2.4rem", color: "#2667FF" }}
               >
-                HustleBee 🐝
+                Hustle 🐝
               </Typography>
             </Box>
 
@@ -55,6 +55,8 @@ const Navbar = ({ matches }) => {
                     marginRight: "20px",
                     cursor: "pointer",
                     color: "#616161",
+                    fontSize:"1.2rem",
+                   
                   }}
                 >
                   Home
@@ -65,6 +67,7 @@ const Navbar = ({ matches }) => {
                     marginRight: "20px",
                     cursor: "pointer",
                     color: "#616161",
+                    fontSize:"1.2rem",
                   }}
                 >
                   Browse Jobs
@@ -75,6 +78,7 @@ const Navbar = ({ matches }) => {
                       marginRight: "20px",
                       cursor: "pointer",
                       color: "#616161",
+                      fontSize:"1.2rem",
                     }}
                     aria-controls='basic-menu'
                     aria-haspopup='true'
@@ -90,6 +94,7 @@ const Navbar = ({ matches }) => {
                     marginRight: "20px",
                     cursor: "pointer",
                     color: "#616161",
+                    fontSize:"1.2rem",
                   }}
                 >
                   Contact
@@ -110,11 +115,11 @@ const Navbar = ({ matches }) => {
                   <a href="#signup">
                   <CustomBtn
                     sx={{
-                      background: "#FEEA00",
+                      background: "rgba(97, 97, 97,.5)",
                       color: "#000",
                       marginLeft: "10px",
                       "&:hover": {
-                        background: "#ffdf00",
+                        background: "rgba(97, 97, 97,.2)",
                       },
                     }}
                   >
@@ -125,11 +130,11 @@ const Navbar = ({ matches }) => {
                   <a href="#login">
                   <CustomBtn
                     sx={{
-                      background: "#FEEA00",
+                      background: " rgba(97, 97, 97,.5)",
                       color: "#000",
                       marginLeft: "10px",
                       "&:hover": {
-                        background: "#ffdf00",
+                        background: "rgba(97, 97, 97,.2)",
                       },
                     }}
                   >
