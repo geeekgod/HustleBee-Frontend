@@ -4,6 +4,9 @@
   font-family: "DM Sans", sans-serif !important;
   text-decoration: none;
 }
+html{
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
