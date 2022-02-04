@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createTheme, ThemeProvider } from "@mui/material";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -17,8 +18,10 @@ const theme = createTheme({
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
+      <Router>
       <App />
-    </ThemeProvider>
+      </Router>
+      </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

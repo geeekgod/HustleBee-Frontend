@@ -115,11 +115,11 @@ const Navbar = ({ matches }) => {
                   <a href="#signup">
                   <CustomBtn
                     sx={{
-                      background: "rgba(97, 97, 97,.5)",
-                      color: "#000",
+                      background: "#2667FF",
+                      color: "#fff",
                       marginLeft: "10px",
                       "&:hover": {
-                        background: "rgba(97, 97, 97,.2)",
+                        background: "#477EFF",
                       },
                     }}
                   >
@@ -130,11 +130,11 @@ const Navbar = ({ matches }) => {
                   <a href="#login">
                   <CustomBtn
                     sx={{
-                      background: " rgba(97, 97, 97,.5)",
-                      color: "#000",
+                      background: "#2667FF",
+                      color: "#fff",
                       marginLeft: "10px",
                       "&:hover": {
-                        background: "rgba(97, 97, 97,.2)",
+                        background: "#477EFF",
                       },
                     }}
                   >

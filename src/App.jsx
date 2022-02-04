@@ -1,12 +1,9 @@
 // import { useMediaQuery, useTheme } from '@mui/material';
 import "./App.css";
-import LandingPg from "./Components/BeforeLogin/LandingPg";
-import NavbarBefore from "./Components/BeforeLogin/Navbar/NavbarBefore";
-import { beforeHomeObj } from "./Components/BeforeLogin/LandingPg/Data";
 import { useMediaQuery, useTheme } from "@mui/material";
-import Categories from "./Components/BeforeLogin/Categories";
-import LandingCTA from "./Components/BeforeLogin/LandingCTA";
-import Footer from "./Components/BeforeLogin/Footer";
+import { Route, Routes } from "react-router-dom";
+import Landing from "./Pages/Landing";
+
 
 function App() {
   //theme instance
@@ -15,11 +12,10 @@ function App() {
   return (
     <div className="App">
       <>
-        <NavbarBefore matches={matches} />
-        <LandingPg {...beforeHomeObj} />
-        <Categories/>
-        <LandingCTA/>
-        <Footer/>
+      <Routes>
+       <Route path="/" element={<Landing matches={matches} />}></Route>
+       </Routes>
+       
       </>
     </div>
   );

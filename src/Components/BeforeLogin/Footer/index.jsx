@@ -37,15 +37,16 @@ const Footer = () => {
 
                 <FooterLinksItems>
                   <FooterLinkTitle>Hire</FooterLinkTitle>
-                  <FooterLink href='#signin'>Recuiter Sign Up </FooterLink>
+                  <FooterLink href='#signin'>Be a Recuiter</FooterLink>
                   <FooterLink href='#signin'>Hire a Bee</FooterLink>
+
                   <FooterLink href='#signin'>Find Talent</FooterLink>
                 </FooterLinksItems>
               </FooterLinksWrapper>
               <FooterLinksWrapper>
                 <FooterLinksItems>
                   <FooterLinkTitle>Apply </FooterLinkTitle>
-                  <FooterLink href='#signin'>Bee Sign Up </FooterLink>
+                  <FooterLink href='#signin'>Be a Bee</FooterLink>
                   <FooterLink href='#signin'>Apply For Jobs</FooterLink>
                   <FooterLink href='#signin'>Find Work</FooterLink>
                 </FooterLinksItems>
