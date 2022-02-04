@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Box = styled.div`
+export const Boxs = styled.div`
   display: flex;
   padding: 3rem 10px;
   background-color: rgba(0, 0, 0, 0.03);

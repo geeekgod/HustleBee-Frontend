@@ -1,18 +1,20 @@
+import { Box } from "@mui/material";
 import React from "react";
 import {
-  Box,
+  Boxs,
   Card,
   Cards,
   CategoriesWrapper,
   Content,
   Icon,
 } from "./CategoriesElements";
+
 import { categoriesData } from "./data";
 
 const Categories = () => {
   return (
     <>
-      <Box>
+      <Boxs id="categories">
        
         <p
           style={{
@@ -27,7 +29,8 @@ const Categories = () => {
           Jobs based on your desired category
         </p>
         <h1 style={{ textAlign: "center" }}>Choose Your Desired Category</h1>
-        <CategoriesWrapper id="categories">
+        <Box>
+        <CategoriesWrapper >
           <Cards>
             {categoriesData &&
               categoriesData.categories.map((i) => {
@@ -41,7 +44,10 @@ const Categories = () => {
               })}
           </Cards>
         </CategoriesWrapper>
-      </Box>
+
+        </Box>
+        
+      </Boxs>
     </>
   );
 };

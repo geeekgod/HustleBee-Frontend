@@ -107,7 +107,7 @@ const Navbar = ({ matches }) => {
             >
               {!matches ? (
                 <Box>
-                  
+                  <a href="#signup">
                   <CustomBtn
                     sx={{
                       background: "#FEEA00",
@@ -120,7 +120,9 @@ const Navbar = ({ matches }) => {
                   >
                     Sign Up
                   </CustomBtn>
-
+                  </a>
+               
+                  <a href="#login">
                   <CustomBtn
                     sx={{
                       background: "#FEEA00",
@@ -133,6 +135,8 @@ const Navbar = ({ matches }) => {
                   >
                     Log In
                   </CustomBtn>
+                  </a>
+              
                 </Box>
               ) : (
                 <IconButton size='large' onClick={() => setOpenDrawer(true)}>
