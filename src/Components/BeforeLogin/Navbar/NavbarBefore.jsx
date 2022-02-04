@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Toolbar, IconButton, Typography, Menu, MenuItem } from "@mui/material";
-
+// import HustleBee from '/static/img/HustleBee.svg'
 import { Box } from "@mui/system";
 
 import DrawerComponent from "./DrawerComponent";
@@ -33,13 +33,9 @@ const Navbar = ({ matches }) => {
             component='div'
           >
             {/* logo */}
-            <Box>
-              <Typography
-                className='navIcon'
-                sx={{ fontSize: "2.4rem", color: "#2667FF" }}
-              >
-                Hustle 🐝
-              </Typography>
+            <Box sx={{display:"flex",justifyContent:"center",alignItems:"center"}} >
+              <img style={{width:"50%"}} src="/static/img/hustlebee.png" alt="" />
+            
             </Box>
 
             {/* Links */}
@@ -49,7 +45,7 @@ const Navbar = ({ matches }) => {
                 setOpenDrawer={setOpenDrawer}
               />
             ) : (
-              <Box sx={{ display: "flex" }}>
+              <Box sx={{ display: "flex", marginTop:"20px" }}>
                 <Typography
                   sx={{
                     marginRight: "20px",
@@ -111,7 +107,7 @@ const Navbar = ({ matches }) => {
               }}
             >
               {!matches ? (
-                <Box>
+                <Box sx={{marginTop:"20px"}}>
                   <a href="#signup">
                   <CustomBtn
                     sx={{
