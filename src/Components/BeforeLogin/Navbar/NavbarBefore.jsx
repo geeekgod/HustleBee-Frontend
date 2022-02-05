@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { Toolbar, IconButton, Typography, Menu, MenuItem } from "@mui/material";
-// import HustleBee from '/static/img/HustleBee.svg'
+import React, { memo, useState } from "react";
+import { Toolbar, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
 import DrawerComponent from "./DrawerComponent";
@@ -31,7 +30,7 @@ const Navbar = ({ matches }) => {
               width: "100%",
               padding: "20px 10px",
             }}
-            component='div'
+            component="div"
           >
             {/* logo */}
             <Box
@@ -43,8 +42,8 @@ const Navbar = ({ matches }) => {
             >
               <img
                 style={{ width: "50%" }}
-                src='/static/img/hustlebee.png'
-                alt=''
+                src="/static/img/hustlebee.png"
+                alt=""
               />
             </Box>
 
@@ -77,7 +76,7 @@ const Navbar = ({ matches }) => {
                 >
                   Browse Jobs
                 </Typography>
-                <a href='#categories'>
+                <a href="#categories">
                   <Typography
                     sx={{
                       marginRight: "20px",
@@ -85,8 +84,8 @@ const Navbar = ({ matches }) => {
                       color: "#616161",
                       fontSize: "1.2rem",
                     }}
-                    aria-controls='basic-menu'
-                    aria-haspopup='true'
+                    aria-controls="basic-menu"
+                    aria-haspopup="true"
                     aria-expanded={openMenu ? "true" : undefined}
                     onClick={handleClick}
                   >
@@ -117,40 +116,29 @@ const Navbar = ({ matches }) => {
             >
               {!matches ? (
                 <Box sx={{ marginTop: "20px" }}>
-                  
-                <Link to="/signin">
-                <CustomBtn
-                    sx={{
-                      background: "#2667FF",
-                      color: "#fff",
-                      marginLeft: "10px",
-                      "&:hover": {
-                        background: "#477EFF",
-                      },
-                    }} 
-                  >
-                    Sign Up
-                  </CustomBtn>
-                </Link>
-                  
-                 
+                  <Link to="/">
+                    <CustomBtn
+                      sx={{
+                        marginLeft: "10px",
+                      }}
+                    >
+                      Sign Up
+                    </CustomBtn>
+                  </Link>
 
-                  <CustomBtn
-                    sx={{
-                      background: "#2667FF",
-                      color: "#fff",
-                      marginLeft: "10px",
-                      "&:hover": {
-                        background: "#477EFF",
-                      },
-                    }}
-                  >
-                    Log In
-                  </CustomBtn>
+                  <Link to="/signin">
+                    <CustomBtn
+                      sx={{
+                        marginLeft: "10px",
+                      }}
+                    >
+                      Log In
+                    </CustomBtn>
+                  </Link>
                 </Box>
               ) : (
-                <IconButton size='large' onClick={() => setOpenDrawer(true)}>
-                  <MenuIcon fontSize='inherit' />
+                <IconButton size="large" onClick={() => setOpenDrawer(true)}>
+                  <MenuIcon fontSize="inherit" />
                 </IconButton>
               )}
             </Box>
@@ -161,4 +149,4 @@ const Navbar = ({ matches }) => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

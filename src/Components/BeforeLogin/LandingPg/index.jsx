@@ -12,7 +12,7 @@ import {
   TextWrapper,
   TopLine,
 } from "./LandingElements";
-import React from "react";
+import React, { memo } from "react";
 
 import Stack from "@mui/material/Stack";
 
@@ -41,12 +41,11 @@ const Home = ({
                 <SubTitle>{description}</SubTitle>
                 <BtnWrap>
                   <Stack spacing={3} direction="row">
-                    <CtaButton>{"Find a Bee"}</CtaButton >
-                    
-                    <CtaButton
-                     primary={true}
-                     dark={true}
-                     white={false} >{"Need a Job?"}</CtaButton >
+                    <CtaButton>{"Find a Bee"}</CtaButton>
+
+                    <CtaButton primary={true} dark={true} white={false}>
+                      {"Need a Job?"}
+                    </CtaButton>
                     {/* <Button variant="contained">Text</Button>
                     <Button variant="contained">Contained</Button> */}
                   </Stack>
@@ -65,4 +64,4 @@ const Home = ({
   );
 };
 
-export default Home;
+export default memo(Home);
