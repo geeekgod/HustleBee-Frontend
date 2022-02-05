@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import React from "react";
+import React, { memo } from "react";
 import CtaButton from "../Main/CtaButtons";
 
 import {
@@ -19,14 +19,11 @@ const LandingCTA = () => {
             Join HustleBee to unleash the world’s untapped human potential
           </Heading>
           <BtnWrapper>
-            <Stack
-              direction={{ xs: "column", sm: "row" }}
-              spacing={2}
-            >
+            <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
               <CtaButton primary={true} dark={true} white={true}>
                 Hire a Bee
               </CtaButton>
-              < Small>OR</ Small>
+              <Small>OR</Small>
               <CtaButton white={true}> Apply as a Bee</CtaButton>
             </Stack>
           </BtnWrapper>
@@ -36,4 +33,4 @@ const LandingCTA = () => {
   );
 };
 
-export default LandingCTA;
+export default memo(LandingCTA);
