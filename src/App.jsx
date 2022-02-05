@@ -3,6 +3,7 @@ import "./App.css";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import Landing from "./Pages/Landing";
+import SignInPg from "./Pages/SignInPg";
 
 
 function App() {
@@ -13,7 +14,10 @@ function App() {
     <div className="App">
       <>
       <Routes>
-       <Route path="/" element={<Landing matches={matches} />}></Route>
+       <Route index path="/" element={<Landing matches={matches} />}></Route>
+
+       <Route path="/signin" element={<SignInPg/>}>  </Route>
+  
        </Routes>
        
       </>

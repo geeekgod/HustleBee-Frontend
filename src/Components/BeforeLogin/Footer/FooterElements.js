@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 
+
 export const FooterContainer=styled.footer`
 padding-top:1rem;
 background-color:rgba(0, 0, 0, 0.03);`;
@@ -56,7 +57,7 @@ margin-bottom:16px;
 
  color:#000;
 `;
-export const FooterLink=styled.a`
+export const FooterLink=styled.p`
 color:#000;
 text-decoration:none;
 margin-bottom:0.5rem;

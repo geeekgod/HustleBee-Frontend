@@ -6,6 +6,7 @@ import { Box } from "@mui/system";
 import DrawerComponent from "./DrawerComponent";
 import MenuIcon from "@mui/icons-material/Menu";
 import CustomBtn from "../Main/CustomBtn";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ matches }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -33,9 +34,18 @@ const Navbar = ({ matches }) => {
             component='div'
           >
             {/* logo */}
-            <Box sx={{display:"flex",justifyContent:"center",alignItems:"center"}} >
-              <img style={{width:"50%"}} src="/static/img/hustlebee.png" alt="" />
-            
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <img
+                style={{ width: "50%" }}
+                src='/static/img/hustlebee.png'
+                alt=''
+              />
             </Box>
 
             {/* Links */}
@@ -45,14 +55,13 @@ const Navbar = ({ matches }) => {
                 setOpenDrawer={setOpenDrawer}
               />
             ) : (
-              <Box sx={{ display: "flex", marginTop:"20px" }}>
+              <Box sx={{ display: "flex", marginTop: "20px" }}>
                 <Typography
                   sx={{
                     marginRight: "20px",
                     cursor: "pointer",
                     color: "#616161",
-                    fontSize:"1.2rem",
-                   
+                    fontSize: "1.2rem",
                   }}
                 >
                   Home
@@ -63,7 +72,7 @@ const Navbar = ({ matches }) => {
                     marginRight: "20px",
                     cursor: "pointer",
                     color: "#616161",
-                    fontSize:"1.2rem",
+                    fontSize: "1.2rem",
                   }}
                 >
                   Browse Jobs
@@ -74,7 +83,7 @@ const Navbar = ({ matches }) => {
                       marginRight: "20px",
                       cursor: "pointer",
                       color: "#616161",
-                      fontSize:"1.2rem",
+                      fontSize: "1.2rem",
                     }}
                     aria-controls='basic-menu'
                     aria-haspopup='true'
@@ -90,7 +99,7 @@ const Navbar = ({ matches }) => {
                     marginRight: "20px",
                     cursor: "pointer",
                     color: "#616161",
-                    fontSize:"1.2rem",
+                    fontSize: "1.2rem",
                   }}
                 >
                   Contact
@@ -107,9 +116,10 @@ const Navbar = ({ matches }) => {
               }}
             >
               {!matches ? (
-                <Box sx={{marginTop:"20px"}}>
-                  <a href="#signup">
-                  <CustomBtn
+                <Box sx={{ marginTop: "20px" }}>
+                  
+                <Link to="/signin">
+                <CustomBtn
                     sx={{
                       background: "#2667FF",
                       color: "#fff",
@@ -117,13 +127,14 @@ const Navbar = ({ matches }) => {
                       "&:hover": {
                         background: "#477EFF",
                       },
-                    }}
+                    }} 
                   >
                     Sign Up
                   </CustomBtn>
-                  </a>
-               
-                  <a href="#login">
+                </Link>
+                  
+                 
+
                   <CustomBtn
                     sx={{
                       background: "#2667FF",
@@ -136,8 +147,6 @@ const Navbar = ({ matches }) => {
                   >
                     Log In
                   </CustomBtn>
-                  </a>
-              
                 </Box>
               ) : (
                 <IconButton size='large' onClick={() => setOpenDrawer(true)}>

@@ -1,4 +1,7 @@
 import React from "react";
+import { Link as LinkR } from "react-router-dom";
+import { HashLink as LinkH } from "react-router-hash-link";
+
 import {
   FooterWrap,
   FooterContainer,
@@ -21,36 +24,58 @@ const Footer = () => {
         <FooterWrap>
           <Wrapper>
             <SocialLogo href=' '>
-            <img style={{width:"50%"}} src="/static/img/hustlebee.png" alt="" />
+              <img
+                style={{ width: "50%" }}
+                src='/static/img/hustlebee.png'
+                alt=''
+              />
             </SocialLogo>
             <FooterLinksContainer>
               <FooterLinksWrapper>
                 <FooterLinksItems>
                   <FooterLinkTitle>Categories</FooterLinkTitle>
 
-                  <FooterLink href='#categories'>Full-Time</FooterLink>
-
-                  <FooterLink href='#categories'>Part-Time</FooterLink>
-
-                  <FooterLink href='#categories'>Internship</FooterLink>
-
-                  <FooterLink href='#categories'>Freelance</FooterLink>
+                  <FooterLink>
+                    <LinkH to='/#categories'>Full-Time</LinkH>
+                  </FooterLink>
+                  <FooterLink>
+                    <LinkH to='/#categories'>Part-Time</LinkH>
+                  </FooterLink>
+                  <FooterLink>
+                    <LinkH to='/#categories'>Internship</LinkH>
+                  </FooterLink>
+                  <FooterLink>
+                    <LinkH to='/#categories'>Freelance</LinkH>
+                  </FooterLink>
                 </FooterLinksItems>
 
                 <FooterLinksItems>
                   <FooterLinkTitle>Hire</FooterLinkTitle>
-                  <FooterLink href='#signin'>Be a Recuiter</FooterLink>
-                  <FooterLink href='#signin'>Hire a Bee</FooterLink>
 
-                  <FooterLink href='#signin'>Find Talent</FooterLink>
+                  <FooterLink>
+                    <LinkR to='/signin'>Be a Recuiter</LinkR>
+                  </FooterLink>
+                  <FooterLink>
+                    <LinkR to='/signin'>Hire a Bee</LinkR>
+                  </FooterLink>
+                  <FooterLink>
+                    <LinkR to='/signin'>Find Talent</LinkR>
+                  </FooterLink>
                 </FooterLinksItems>
               </FooterLinksWrapper>
               <FooterLinksWrapper>
                 <FooterLinksItems>
                   <FooterLinkTitle>Apply </FooterLinkTitle>
-                  <FooterLink href='#signin'>Be a Bee</FooterLink>
-                  <FooterLink href='#signin'>Apply For Jobs</FooterLink>
-                  <FooterLink href='#signin'>Find Work</FooterLink>
+                  <FooterLink>
+                    <LinkR to='/signin'>Be a Bee</LinkR>
+                  </FooterLink>
+                  <FooterLink>
+                    <LinkR to='/signin'>Apply For Jobs</LinkR>
+                  </FooterLink>
+
+                  <FooterLink>
+                    <LinkR to='/signin'>Find Work</LinkR>
+                  </FooterLink>
                 </FooterLinksItems>
                 <FooterLinksItems>
                   <FooterLinkTitle>About HustleBee </FooterLinkTitle>
