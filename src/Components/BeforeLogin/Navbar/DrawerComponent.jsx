@@ -11,7 +11,7 @@ import {
 const DrawerComponent = ({ openDrawer, setOpenDrawer }) => {
   return (
     <Drawer
-      anchor="right"
+      anchor="left"
       open={openDrawer}
       onClose={() => {
         setOpenDrawer(false);

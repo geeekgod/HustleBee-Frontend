@@ -10,7 +10,7 @@ const Router = ({matches}) => {
         <Route index path="/" element={<Landing matches={matches} />} />
         <Route path="/signin" element={<SignInPg />} />{" "}
       </Routes>
-    </>
+    </>  
   );
 };
 
