@@ -1,17 +1,26 @@
 import { Box } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-
-
 import { ImgWrapper, SignInContainer } from "./SignInElements";
+import ValidationsignIn from "./ValidationsignIn";
 const SignIn = () => {
+  const [emailNum, setEmailNum] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log({ email: emailNum, password: password });
+
+    setError(ValidationsignIn(emailNum, password));
+  };
+
+  const [error, setError] = useState({});
   return (
     <>
       <Box id='signin'>
@@ -37,7 +46,12 @@ const SignIn = () => {
                 <Typography component='h2' variant='h5'>
                   Sign to your account
                 </Typography>
-                <Box component='form' noValidate sx={{ mt: 1, padding: 1 }}>
+                <Box
+                  component='form'
+                  onSubmit={handleSubmit}
+                  noValidate
+                  sx={{ mt: 1, padding: 1 }}
+                >
                   <TextField
                     margin='normal'
                     required
@@ -45,9 +59,12 @@ const SignIn = () => {
                     id='email'
                     label='Email Address'
                     name='email'
+                    value={emailNum}
+                    onChange={(e) => setEmailNum(e.target.value)}
                     autoComplete='email'
                     autoFocus
                   />
+                  {error.emailNum && error.emailNum}
                   <TextField
                     margin='normal'
                     required
@@ -55,10 +72,12 @@ const SignIn = () => {
                     name='password'
                     label='Password'
                     type={"password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     id='password'
-                    autoComplete='current-password'
+                    autoComplete='password'
                   />
-
+                  {error.password && error.password}
                   <Button
                     type='submit'
                     fullWidth
@@ -71,18 +90,14 @@ const SignIn = () => {
 
                   <Grid container sx={{ paddingTop: 2 }}>
                     <Grid item xs>
-                    
-                        <Link href='#' variant='body2'>
-                          {"Forgot Password"}
-                        </Link>
-                 
+                      <Link href='#' variant='body2'>
+                        {"Forgot Password"}
+                      </Link>
                     </Grid>
                     <Grid item>
-                       
-                        <Link href='#' variant='body2'>
-                          {"Don't have an account? Sign Up"}
-                        </Link>
-                 
+                      <Link href='#' variant='body2'>
+                        {"Don't have an account? Sign Up"}
+                      </Link>
                     </Grid>
                   </Grid>
                 </Box>
