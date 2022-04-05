@@ -13,6 +13,16 @@ const theme = createTheme({
       dark: "#0049F5",
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      800: 800,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
 });
 
 ReactDOM.render(

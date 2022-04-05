@@ -116,7 +116,7 @@ const Navbar = ({ matches }) => {
             >
               {!matches ? (
                 <Box sx={{ marginTop: "20px" }}>
-                  <Link to="/">
+                  <Link to="/signup">
                     <CustomBtn
                       sx={{
                         marginLeft: "10px",
