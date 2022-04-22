@@ -1,14 +1,16 @@
-import { Box } from "@mui/material";
-import React, { useState } from "react";
+import { Box, CircularProgress } from "@mui/material";
+import React, { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
+import Alert from "@mui/material/Alert";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import CustomBtn from "../../Components/BeforeLogin/Main/CustomBtn";
-import LockOpenIcon from '@mui/icons-material/LockOpen';
+import LockOpenIcon from "@mui/icons-material/LockOpen";
 import { ImgWrapper, SignUpContainer } from "./SignUpElements";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { Link as RLink } from "react-router-dom";
+import hustleBeeApi from "../../api/hustleBeeApi";
 
 const SignUp = () => {
   const theme = useTheme();
@@ -16,9 +18,53 @@ const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errs, setErrs] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [msg, setMsg] = useState("");
+
+  useEffect(() => {
+    setEmail(email.toLowerCase());
+    if (
+      name.trim().length < 4 ||
+      !/\S+@\S+\.\S+/.test(email.trim()) ||
+      password.trim().length < 8
+    ) {
+      setErrs(true);
+    } else {
+      setErrs(false);
+    }
+
+    if (!errs && submitted) {
+      setSubmitted(false);
+    }
+  }, [name, email, password]);
+
   const _handleSubmit = (e) => {
+    setName(name.trim());
+    setEmail(email.trim());
+    setPassword(password.trim());
     e.preventDefault();
-    console.log({ email: email, password: password });
+    setSubmitted(true);
+    if (!errs) {
+      console.log({ email: email, password: password });
+      hustleBeeApi
+        .post("/register", {
+          name: name,
+          email: email,
+          password: password,
+        })
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.msg) {
+            setMsg(res.data.msg);
+          }
+          setSubmitted(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setSubmitted(false);
+        });
+    }
   };
 
   return (
@@ -49,9 +95,7 @@ const SignUp = () => {
                   marginBottom: 2,
                 }}
               >
-                <LockOpenIcon
-                  style={{ fontSize: "4rem", color: "#2667FF" }}
-                />
+                <LockOpenIcon style={{ fontSize: "4rem", color: "#2667FF" }} />
                 <Typography component="h2" variant="h5">
                   Create a new account
                 </Typography>
@@ -72,6 +116,12 @@ const SignUp = () => {
                     autoFocus
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    error={submitted && name.trim().length < 4}
+                    helperText={
+                      submitted && name.trim().length < 4
+                        ? "Enter valid name"
+                        : null
+                    }
                   />
                   <TextField
                     margin="normal"
@@ -83,6 +133,12 @@ const SignUp = () => {
                     autoComplete="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    error={submitted && !/\S+@\S+\.\S+/.test(email.trim())}
+                    helperText={
+                      submitted && !/\S+@\S+\.\S+/.test(email.trim())
+                        ? "Enter valid email address"
+                        : null
+                    }
                   />
                   <TextField
                     margin="normal"
@@ -95,10 +151,32 @@ const SignUp = () => {
                     autoComplete="current-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    error={submitted && password.trim().length < 8}
+                    helperText={
+                      submitted && password.trim().length < 8
+                        ? "Enter valid password"
+                        : null
+                    }
                   />
+                  {submitted && errs ? (
+                    <Alert severity="error">
+                      Please check your fields carefully.
+                    </Alert>
+                  ) : null}
+
+                  {msg && msg === "User Already Exist" ? (
+                    <Alert severity="error">You are already registered!</Alert>
+                  ) : null}
+                  {msg && msg === "User added sucessfully" ? (
+                    <Alert severity="success">Registration Successful!</Alert>
+                  ) : null}
 
                   <CustomBtn type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>
-                    Register
+                    {submitted && !errs ? (
+                      <CircularProgress size={24} color="inherit" />
+                    ) : (
+                      "Register"
+                    )}
                   </CustomBtn>
 
                   <Grid container sx={{ paddingTop: 2 }}>
