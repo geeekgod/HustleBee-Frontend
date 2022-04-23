@@ -23,7 +23,7 @@ const Footer = () => {
       <FooterContainer>
         <FooterWrap>
           <Wrapper>
-            <SocialLogo href=" ">
+            <SocialLogo>
               <img
                 style={{ width: "50%" }}
                 src="/static/img/hustlebee.png"

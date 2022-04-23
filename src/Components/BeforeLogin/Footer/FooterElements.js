@@ -84,7 +84,7 @@ margin-top:1rem;
     flex-direction:column;
 }`;
 
-export const SocialLogo= styled.a`
+export const SocialLogo= styled.p`
 color:#101522;
 justify-self:start;
 cursor: pointer;

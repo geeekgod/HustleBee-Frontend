@@ -26,9 +26,11 @@ const DrawerComponent = ({ openDrawer, setOpenDrawer }) => {
           </ListItemIcon>
         </ListItem>
         <ListItem divider button onClick={() => setOpenDrawer(false)}>
-          <ListItemIcon sx={{ px: 5 }}>
-            <ListItemText>Browse Jobs</ListItemText>
-          </ListItemIcon>
+          <Link to="/signin">
+            <ListItemIcon sx={{ px: 5 }}>
+              <ListItemText>Browse Jobs</ListItemText>
+            </ListItemIcon>
+          </Link>
         </ListItem>
         <ListItem divider button onClick={() => setOpenDrawer(false)}>
           <ListItemIcon sx={{ px: 5 }}>
@@ -36,35 +38,45 @@ const DrawerComponent = ({ openDrawer, setOpenDrawer }) => {
           </ListItemIcon>
         </ListItem>
         {/* buttons */}
-        <Box sx={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
-          <Box sx={{marginTop: "20px" }}>
-          <Link to="/">
-                    <CustomBtn
-                      sx={{
-                       width:"80%",margin:"auto",
-                        display: "flex",alignItems:"center",justifyContent:"center"
-                      }}
-                    >
-                      Sign Up
-                    </CustomBtn>
-                  </Link>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <Box sx={{ marginTop: "20px" }}>
+            <Link to="/signup">
+              <CustomBtn
+                sx={{
+                  width: "80%",
+                  margin: "auto",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                Sign Up
+              </CustomBtn>
+            </Link>
           </Box>
-                
-                    <Box sx={{marginTop: "20px" }}>
-                    <Link to="/signin">
-                    <CustomBtn
-                      sx={{
-                        width:"80%",margin:"auto",
-                        display: "flex",alignItems:"center",justifyContent:"center"
-                      }}
-                    >
-                      Log In
-                    </CustomBtn>
-                    
-                  </Link>
-                    </Box>
-               
-                </Box>
+
+          <Box sx={{ marginTop: "20px" }}>
+            <Link to="/signin">
+              <CustomBtn
+                sx={{
+                  width: "80%",
+                  margin: "auto",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                Log In
+              </CustomBtn>
+            </Link>
+          </Box>
+        </Box>
       </List>
     </Drawer>
   );

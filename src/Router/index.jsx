@@ -7,6 +7,9 @@ import Jobs from "../Components/Jobs";
 import CreateProfile from "../Pages/CreateProfile";
 import { AuthContext } from "../context/AuthContext";
 import { DataContext } from "../context/DataContext";
+import { CircularProgress } from "@mui/material";
+import { Box } from "@mui/system";
+import ListJobs from "../Pages/ListJobs";
 const Router = ({ matches }) => {
   const { token, auth } = useContext(AuthContext);
   const { user, profile } = useContext(DataContext);
@@ -21,16 +24,41 @@ const Router = ({ matches }) => {
           <Route index path="/" element={<Landing matches={matches} />} />
           <Route path="/signin" element={<SignInPg />} />
           <Route path="/signup" element={<SignUpPg />} />
-          {/* <Route path="/createprofile" element={<CreateProfile />} />
-            <Route path="/jobs" element={<Jobs />} /> */}
         </>
       );
     } else {
-      if (profile) {
-        console.log(2);
-        return <Route index path="/" element={<Jobs />} />;
+      if (!user) {
+        return (
+          <Route
+            index
+            path="/"
+            element={
+              <>
+                {" "}
+                <Box
+                  sx={{
+                    display: "flex",
+                    height: "100vh",
+                    width: "100vw",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <CircularProgress />
+                </Box>
+              </>
+            }
+          />
+        );
       } else {
-        return <Route index path="/" element={<CreateProfile />} />;
+        if (profile) {
+          console.log(2);
+          return (
+            <Route index path="/" element={<ListJobs matches={matches} />} />
+          );
+        } else {
+          return <Route index path="/" element={<CreateProfile />} />;
+        }
       }
     }
   };
