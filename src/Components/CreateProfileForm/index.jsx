@@ -11,11 +11,18 @@ import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import AddLocationIcon from "@mui/icons-material/AddLocation";
 import BadgeIcon from "@mui/icons-material/Badge";
+import CtaButton from "../BeforeLogin/Main/CtaButtons";
 const CreateProfileForm = () => {
   const [role, setRole] = useState("");
+
+  const styles={
+    icons: {
+      color:"rgb(38, 103, 255)"
+    },
+  }
   return (
     <>
-      <Box>
+  <Box>
         <Container sx={{ mt: 5 }}>
           <Box
             sx={{
@@ -42,7 +49,7 @@ const CreateProfileForm = () => {
                   type='text'
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position='start'>
+                      <InputAdornment  sx={styles.icons} position='start'>
                         <PersonIcon />
                       </InputAdornment>
                     ),
@@ -63,7 +70,7 @@ const CreateProfileForm = () => {
                   type='email'
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position='start'>
+                      <InputAdornment sx={styles.icons} position='start'>
                         <EmailIcon />
                       </InputAdornment>
                     ),
@@ -93,7 +100,7 @@ const CreateProfileForm = () => {
                   type='location'
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position='start'>
+                      <InputAdornment sx={styles.icons} position='start'>
                         <AddLocationIcon />
                       </InputAdornment>
                     ),
@@ -114,7 +121,7 @@ const CreateProfileForm = () => {
                   type='position'
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position='start'>
+                      <InputAdornment sx={styles.icons} position='start'>
                         <BadgeIcon />
                       </InputAdornment>
                     ),
@@ -124,8 +131,18 @@ const CreateProfileForm = () => {
                 />
               </Grid>
 
-              <Grid item xs={12} md={6} sx={{display:"flex",justifyContent:"center",alignItems:"center"}}>
-                 SAVE
+              <Grid
+                item
+                xs={12}
+               
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                 
+                }}
+              >
+                <CtaButton yesw={true}   white={true}>SAVE</CtaButton>
               </Grid>
             </Grid>
           </Box>
