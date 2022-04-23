@@ -1,5 +1,5 @@
 import { Box, CircularProgress } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Alert from "@mui/material/Alert";
@@ -11,6 +11,7 @@ import { ImgWrapper, SignUpContainer } from "./SignUpElements";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { Link as RLink } from "react-router-dom";
 import hustleBeeApi from "../../api/hustleBeeApi";
+import { AuthContext } from "../../context/AuthContext";
 
 const SignUp = () => {
   const theme = useTheme();
@@ -21,6 +22,8 @@ const SignUp = () => {
   const [errs, setErrs] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [msg, setMsg] = useState("");
+
+  const { authSuccess } = useContext(AuthContext);
 
   useEffect(() => {
     setEmail(email.toLowerCase());
@@ -46,7 +49,6 @@ const SignUp = () => {
     e.preventDefault();
     setSubmitted(true);
     if (!errs) {
-      console.log({ email: email, password: password });
       hustleBeeApi
         .post("/register", {
           name: name,
@@ -54,9 +56,11 @@ const SignUp = () => {
           password: password,
         })
         .then((res) => {
-          console.log(res.data);
-          if (res.data.msg) {
-            setMsg(res.data.msg);
+          setMsg(res.data.msg);
+          if (res.data.msg === "Login Succeeded!") {
+            setTimeout(() => {
+              authSuccess(res.data.accessToken);
+            }, 2000);
           }
           setSubmitted(false);
         })
