@@ -13,16 +13,18 @@ import AddLocationIcon from "@mui/icons-material/AddLocation";
 import BadgeIcon from "@mui/icons-material/Badge";
 import CtaButton from "../BeforeLogin/Main/CtaButtons";
 const CreateProfileForm = () => {
-  const [role, setRole] = useState("");
+  // const [role, setRole] = useState("employer");
+  
 
-  const styles={
+  const styles = {
     icons: {
-      color:"rgb(38, 103, 255)"
+      //  for icons n disabled text
+      color: "rgb(38, 103, 255)",
     },
-  }
+  };
   return (
     <>
-  <Box>
+      <Box>
         <Container sx={{ mt: 5 }}>
           <Box
             sx={{
@@ -42,6 +44,7 @@ const CreateProfileForm = () => {
                   margin='normal'
                   required
                   disabled
+                  sx={styles.icons}
                   defaultValue='asla aMSKASKA al'
                   name='name'
                   label='Name'
@@ -49,7 +52,7 @@ const CreateProfileForm = () => {
                   type='text'
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment  sx={styles.icons} position='start'>
+                      <InputAdornment sx={styles.icons} position='start'>
                         <PersonIcon />
                       </InputAdornment>
                     ),
@@ -66,7 +69,7 @@ const CreateProfileForm = () => {
                   fullWidth
                   defaultValue='SSSSSNDKD@gmail.com'
                   name='email'
-                  label='email'
+                  label='Email'
                   type='email'
                   InputProps={{
                     startAdornment: (
@@ -84,8 +87,11 @@ const CreateProfileForm = () => {
                   <InputLabel className='role' id='role'>
                     Role
                   </InputLabel>
-                  <Select labelId='role' id='role' value='role' label='role'>
-                    <MenuItem value=''>Candidate</MenuItem>
+                  <Select 
+                  labelId='role' 
+                  id='role' value="role"
+                   label='Role'>
+                    <MenuItem value='role'>Candidate</MenuItem>
                     <MenuItem value=''>Employer</MenuItem>
                   </Select>
                 </FormControl>
@@ -117,7 +123,7 @@ const CreateProfileForm = () => {
                   placeholder='(What position you want to apply  or what is your position)'
                   fullWidth
                   name='position'
-                  label='position'
+                  label='Position'
                   type='position'
                   InputProps={{
                     startAdornment: (
@@ -134,15 +140,15 @@ const CreateProfileForm = () => {
               <Grid
                 item
                 xs={12}
-               
                 sx={{
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                 
                 }}
               >
-                <CtaButton yesw={true}   white={true}>SAVE</CtaButton>
+                <CtaButton yesw={true} white={true}>
+                  SAVE
+                </CtaButton>
               </Grid>
             </Grid>
           </Box>

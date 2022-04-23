@@ -44,7 +44,9 @@ button.MuiButton-root:hover{
 /* .MuiContainer-root{
   margin-top:0 !important;
 } */
-
+.MuiFormLabel-root-MuiInputLabel-root{
+  color:rgb(38, 103, 255);
+}
 .role{
   background-color: white;
 }
