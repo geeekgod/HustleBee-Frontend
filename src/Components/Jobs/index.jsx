@@ -1,8 +1,15 @@
-import { Container, Typography } from "@mui/material";
+import {
+  Container,
+  Grid,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import { JobBox } from "./JobsElements";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import IconButton from "@mui/material/IconButton";
+import WorkIcon from "@mui/icons-material/Work";
 
 const Jobs = () => {
   return (
@@ -12,41 +19,85 @@ const Jobs = () => {
           <Box>
             <Typography>Find Jobs</Typography>
           </Box>
-          {/* job cards  */}
-          <Box>
-            <JobBox>
-              <Box mx={3}>
-                <AccountBoxIcon />
-              </Box>
 
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "left",
-                  alignItems: "left",
-                  flexDirection: "column",
-                  textAlign: "left",
-                }}
-              >
-                <Box>
-                  <Typography>Role</Typography>
-                </Box>
+          {/* jobs*/}
+          <Grid className='Box' sx={{ mt: 4 }} item xs={12}>
+            <Box
+              sx={{ backgroundColor: "rgba(0, 0, 0, 0.03)" }}
+              padding='.7rem'
+            >
+              <Box mt={1} sx={{ display: "flex", flexDirection: "row" }}>
+                {/* icon */}
+                <IconButton fs={3}>
+                  <WorkIcon />
+                </IconButton>
                 <Box
                   sx={{
                     display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    flexDirection: "row",
+                    flexDirection: "column",
+                    ml: 3,
                   }}
                 >
-                  <Typography sx={{ mr: 1 }}>Role</Typography>
-                  <Typography>Role</Typography>
-                  <Typography>Role</Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      textAlign: "center",
+                      mx:3,
+                      py:1
+                    }}
+                  >
+                    ROLE
+                  </Box>
+
+                  <Box sx={{ display: "flex", flexDirection: "row", mx:1 }}>
+                    {/* 1 */}
+                    <Grid container spacing={1}>
+                      <Grid item xs={12} sm={4}>
+                        <ListItem>
+                          <ListItemIcon>
+                            <Box>
+                              <WorkIcon />
+                            </Box>
+
+                            <ListItemText>Profession</ListItemText>
+                          </ListItemIcon>
+                        </ListItem>
+                      </Grid>
+                      <Grid item xs={12} sm={4}>
+                        <ListItem>
+                          <ListItemIcon>
+                            <Box>
+                              <WorkIcon />
+                            </Box>
+
+                            <ListItemText>Location</ListItemText>
+                          </ListItemIcon>
+                        </ListItem>
+                      </Grid>
+                      <Grid item xs={4} sm={4}>
+                        <ListItem>
+                          <ListItemIcon>
+                            <Box>
+                              <WorkIcon />
+                            </Box>
+                          <ListItemText>Salary</ListItemText>
+                          </ListItemIcon>
+                        </ListItem>
+                      </Grid>
+                    </Grid>
+                  </Box>
+
+                  <Box sx={{ display: "flex", flexDirection: "row" , ml:2  }}>
+                  < Typography  variant="caption" display="block" sx={{color:"#616161",
+                  backgroundColor:"rgb(251 222 30 / 90%)",borderRadius:"40px" ,px:1}}>
+                    Full-time
+                  </Typography>
+                  </Box>
                 </Box>
               </Box>
-              <Box></Box>
-            </JobBox>
-          </Box>
+            </Box>
+          </Grid>
         </Container>
       </Box>
     </>
