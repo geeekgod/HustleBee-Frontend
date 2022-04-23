@@ -1,17 +1,19 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, useContext } from "react";
 import { Toolbar, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-
-import DrawerComponent from "./DrawerComponent";
 import MenuIcon from "@mui/icons-material/Menu";
 import CustomBtn from "../Main/CustomBtn";
-import { Link } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthContext";
+import { DataContext } from "../../../context/DataContext";
+import AfterDrawer from "./AfterDrawer";
 
 const Navbar = ({ matches }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const openMenu = Boolean(anchorEl);
+  const { authSignOut } = useContext(AuthContext);
+  const { profile } = useContext(DataContext);
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
   };
@@ -46,7 +48,7 @@ const Navbar = ({ matches }) => {
 
             {/* Links */}
             {matches ? (
-              <DrawerComponent
+              <AfterDrawer
                 openDrawer={openDrawer}
                 setOpenDrawer={setOpenDrawer}
               />
@@ -63,35 +65,6 @@ const Navbar = ({ matches }) => {
                   Home
                 </Typography>
 
-                <Link to="/signin">
-                  <Typography
-                    sx={{
-                      marginRight: "20px",
-                      cursor: "pointer",
-                      color: "#616161",
-                      fontSize: "1.2rem",
-                    }}
-                  >
-                    Browse Jobs
-                  </Typography>
-                </Link>
-                <a href="#categories">
-                  <Typography
-                    sx={{
-                      marginRight: "20px",
-                      cursor: "pointer",
-                      color: "#616161",
-                      fontSize: "1.2rem",
-                    }}
-                    aria-controls="basic-menu"
-                    aria-haspopup="true"
-                    aria-expanded={openMenu ? "true" : undefined}
-                    onClick={handleClick}
-                  >
-                    Categories
-                  </Typography>
-                </a>
-
                 <Typography
                   sx={{
                     marginRight: "20px",
@@ -100,8 +73,31 @@ const Navbar = ({ matches }) => {
                     fontSize: "1.2rem",
                   }}
                 >
-                  Contact
+                  Browse Jobs
                 </Typography>
+                {profile.role === "Candidate" ? (
+                  <Typography
+                    sx={{
+                      marginRight: "20px",
+                      cursor: "pointer",
+                      color: "#616161",
+                      fontSize: "1.2rem",
+                    }}
+                  >
+                    My Applied Jobs
+                  </Typography>
+                ) : (
+                  <Typography
+                    sx={{
+                      marginRight: "20px",
+                      cursor: "pointer",
+                      color: "#616161",
+                      fontSize: "1.2rem",
+                    }}
+                  >
+                      My Posted Jobs
+                  </Typography>
+                )}
               </Box>
             )}
 
@@ -115,25 +111,14 @@ const Navbar = ({ matches }) => {
             >
               {!matches ? (
                 <Box sx={{ marginTop: "20px" }}>
-                  <Link to="/signup">
-                    <CustomBtn
-                      sx={{
-                        marginLeft: "10px",
-                      }}
-                    >
-                      Sign Up
-                    </CustomBtn>
-                  </Link>
-
-                  <Link to="/signin">
-                    <CustomBtn
-                      sx={{
-                        marginLeft: "10px",
-                      }}
-                    >
-                      Log In
-                    </CustomBtn>
-                  </Link>
+                  <CustomBtn
+                    onClick={() => authSignOut()}
+                    sx={{
+                      marginLeft: "10px",
+                    }}
+                  >
+                    Sign Out
+                  </CustomBtn>
                 </Box>
               ) : (
                 <IconButton size="large" onClick={() => setOpenDrawer(true)}>

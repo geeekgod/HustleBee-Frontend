@@ -9,6 +9,7 @@ white-space:nowrap;
 padding: 16px 25px;
 color:${({dark})=>(dark ? '#2667FF' : '#fff')};
 font-size: large;
+width:${({yesw})=>(yesw ? '60%' : '100%')};
 
 border:${({white})=>(white ? '1px solid #fff' :' 2px solid #2667FF' )};
 cursor:pointer;
