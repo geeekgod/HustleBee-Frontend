@@ -1,26 +1,25 @@
-import { Box, Container, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
-
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import React, { useContext, useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import InputAdornment from "@mui/material/InputAdornment";
 import Grid from "@mui/material/Grid";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import AddLocationIcon from "@mui/icons-material/AddLocation";
 import BadgeIcon from "@mui/icons-material/Badge";
-import CtaButton from "../BeforeLogin/Main/CtaButtons";
+import { DataContext } from "../../context/DataContext";
 const CreateProfileForm = () => {
-  // const [role, setRole] = useState("employer");
-  
+  const [role, setRole] = useState("Candidate");
+  const { user, createProfile } = useContext(DataContext);
+  const [location, setLocation] = useState("");
+  const [position, setPosition] = useState("");
 
-  const styles = {
-    icons: {
-      //  for icons n disabled text
-      color: "rgb(38, 103, 255)",
-    },
+  const _handleSubmit = (e) => {
+    e.preventDefault();
+    createProfile(role, location, position);
   };
   return (
     <>
@@ -33,107 +32,129 @@ const CreateProfileForm = () => {
               alignItems: "center",
             }}
           >
-            <Typography component='h2' variant='h5'>
+            <Typography component="h2" variant="h6">
               COMPLETE YOUR PROFILE
             </Typography>
           </Box>
-          <Box sx={{ mt: 4 }}>
+          <Box sx={{ mt: 4 }} component="form" onSubmit={_handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12} md={6}>
                 <TextField
-                  margin='normal'
+                  margin="normal"
                   required
                   disabled
-                  sx={styles.icons}
-                  defaultValue='asla aMSKASKA al'
-                  name='name'
-                  label='Name'
+                  name="name"
+                  label="Name"
                   fullWidth
-                  type='text'
+                  value={user && user.name}
+                  type="text"
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment sx={styles.icons} position='start'>
+                      <InputAdornment position="start">
                         <PersonIcon />
                       </InputAdornment>
                     ),
                   }}
-                  id='name'
-                  autoComplete='name'
+                  id="name"
+                  autoComplete="name"
                 />
               </Grid>
               <Grid item xs={12} md={6}>
                 <TextField
-                  margin='normal'
+                  margin="normal"
                   required
                   disabled
                   fullWidth
-                  defaultValue='SSSSSNDKD@gmail.com'
-                  name='email'
-                  label='Email'
-                  type='email'
+                  value={user && user.email}
+                  name="email"
+                  label="email"
+                  type="email"
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment sx={styles.icons} position='start'>
+                      <InputAdornment position="start">
                         <EmailIcon />
                       </InputAdornment>
                     ),
                   }}
-                  id='email'
-                  autoComplete='email'
+                  id="email"
+                  autoComplete="email"
                 />
               </Grid>
               <Grid item xs={12}>
                 <FormControl fullWidth>
-                  <InputLabel className='role' id='role'>
-                    Role
+                  <InputLabel className="role" id="role">
+                    What suits you the most
                   </InputLabel>
-                  <Select 
-                  labelId='role' 
-                  id='role' value="role"
-                   label='Role'>
-                    <MenuItem value='role'>Candidate</MenuItem>
-                    <MenuItem value=''>Employer</MenuItem>
+                  <Select
+                    labelId="role"
+                    id="role"
+                    value={role}
+                    label="What suits you the most"
+                    onChange={(e) => {
+                      setRole(e.target.value);
+                    }}
+                  >
+                    <MenuItem value="Candidate">Candidate</MenuItem>
+                    <MenuItem value="Employer">Employer</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
               <Grid item xs={12} md={6}>
                 <TextField
-                  margin='normal'
+                  margin="normal"
                   required
                   fullWidth
-                  name='location'
-                  label='Location'
-                  type='location'
+                  name="location"
+                  value={location}
+                  onChange={(e) => {
+                    setLocation(e.target.value);
+                  }}
+                  placeholder="Enter your Location"
+                  label="Enter your Location"
+                  type="text"
+                  minLength={"4"}
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment sx={styles.icons} position='start'>
+                      <InputAdornment position="start">
                         <AddLocationIcon />
                       </InputAdornment>
                     ),
                   }}
-                  id='location'
-                  autoComplete='location'
+                  id="location"
+                  autoComplete="location"
                 />
               </Grid>
 
               <Grid item xs={12} md={6}>
                 <TextField
-                  margin='normal'
+                  margin="normal"
                   required
-                  placeholder='(What position you want to apply  or what is your position)'
+                  placeholder={
+                    role === "Candidate"
+                      ? "What position you are interested to apply"
+                      : "What is your position"
+                  }
                   fullWidth
-                  name='position'
-                  label='Position'
-                  type='position'
+                  name="position"
+                  value={position}
+                  onChange={(e) => {
+                    setPosition(e.target.value);
+                  }}
+                  label={
+                    role === "Candidate"
+                      ? "Enter your interested position"
+                      : "Enter your current position"
+                  }
+                  type="text"
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment sx={styles.icons} position='start'>
+                      <InputAdornment position="start">
                         <BadgeIcon />
                       </InputAdornment>
                     ),
                   }}
-                  id='position'
-                  autoComplete='position'
+                  id="position"
+                  autoComplete="position"
                 />
               </Grid>
 
@@ -146,9 +167,9 @@ const CreateProfileForm = () => {
                   alignItems: "center",
                 }}
               >
-                <CtaButton yesw={true} white={true}>
-                  SAVE
-                </CtaButton>
+                <Button variant="contained" disableElevation type="submit">
+                  Create Profile
+                </Button>
               </Grid>
             </Grid>
           </Box>
