@@ -46,6 +46,8 @@ button.MuiButton-root:hover{
 } */
 
 
+
+
 @media screen and (max-width: 480px) {
   .navIcon {
     font-size: 1.8rem !important;
