@@ -5,12 +5,12 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import InputAdornment from '@mui/material/InputAdornment';
+import InputAdornment from "@mui/material/InputAdornment";
 import Grid from "@mui/material/Grid";
-import PersonIcon from '@mui/icons-material/Person';
-import EmailIcon from '@mui/icons-material/Email';
-import AddLocationIcon from '@mui/icons-material/AddLocation';
-import BadgeIcon from '@mui/icons-material/Badge';
+import PersonIcon from "@mui/icons-material/Person";
+import EmailIcon from "@mui/icons-material/Email";
+import AddLocationIcon from "@mui/icons-material/AddLocation";
+import BadgeIcon from "@mui/icons-material/Badge";
 const CreateProfileForm = () => {
   const [role, setRole] = useState("");
   return (
@@ -31,7 +31,6 @@ const CreateProfileForm = () => {
           <Box sx={{ mt: 4 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} md={6}>
-
                 <TextField
                   margin='normal'
                   required
@@ -43,7 +42,7 @@ const CreateProfileForm = () => {
                   type='text'
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start">
+                      <InputAdornment position='start'>
                         <PersonIcon />
                       </InputAdornment>
                     ),
@@ -64,8 +63,8 @@ const CreateProfileForm = () => {
                   type='email'
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start">
-                        <EmailIcon  />
+                      <InputAdornment position='start'>
+                        <EmailIcon />
                       </InputAdornment>
                     ),
                   }}
@@ -74,59 +73,62 @@ const CreateProfileForm = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-              <FormControl  fullWidth>
-              <InputLabel className="role" id='role'>Role</InputLabel>
-              <Select labelId='role'
-              id='role'
-               value='role'
-              
-          
-              
-                label='role'>
-                <MenuItem value=''>Candidate</MenuItem>
-                <MenuItem value=''>Employer</MenuItem>
-              </Select>
-            </FormControl>
+                <FormControl fullWidth>
+                  <InputLabel className='role' id='role'>
+                    Role
+                  </InputLabel>
+                  <Select labelId='role' id='role' value='role' label='role'>
+                    <MenuItem value=''>Candidate</MenuItem>
+                    <MenuItem value=''>Employer</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <TextField
+                  margin='normal'
+                  required
+                  fullWidth
+                  name='location'
+                  label='Location'
+                  type='location'
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position='start'>
+                        <AddLocationIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                  id='location'
+                  autoComplete='location'
+                />
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                <TextField
+                  margin='normal'
+                  required
+                  placeholder='(What position you want to apply  or what is your position)'
+                  fullWidth
+                  name='position'
+                  label='position'
+                  type='position'
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position='start'>
+                        <BadgeIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                  id='position'
+                  autoComplete='position'
+                />
+              </Grid>
+
+              <Grid item xs={12} md={6} sx={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+                 SAVE
               </Grid>
             </Grid>
-
-          
           </Box>
-
-          <TextField
-            margin='normal'
-            required
-            fullWidth
-            name='location'
-            label='Location'
-            type='location'
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <AddLocationIcon  />
-                </InputAdornment>
-              ),
-            }}
-            id='location'
-            autoComplete='location'
-          />
-          <TextField
-            margin='normal'
-            required
-            fullWidth
-            name='position'
-            label='position'
-            type='position'
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <BadgeIcon/>
-                </InputAdornment>
-              ),
-            }}
-            id='position'
-            autoComplete='position'
-          />
         </Container>
       </Box>
     </>
