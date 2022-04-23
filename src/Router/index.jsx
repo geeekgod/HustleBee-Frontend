@@ -4,6 +4,7 @@ import Landing from "../Pages/Landing";
 import SignInPg from "../Pages/SignInPg";
 import SignUpPg from "../Pages/SignUpPg";
 import CreateProfileForm from "../Components/CreateProfileForm"
+import Jobs from "../Components/Jobs";
 const Router = ({matches}) => {
   return (
     <>
@@ -12,6 +13,7 @@ const Router = ({matches}) => {
         <Route path="/signin" element={<SignInPg />} />
         <Route path="/signup" element={<SignUpPg />} />
         <Route path="/createprofile" element={<CreateProfileForm/>} />
+        <Route path="/jobs" element={<Jobs/>} />
       </Routes>
     </>
   );
