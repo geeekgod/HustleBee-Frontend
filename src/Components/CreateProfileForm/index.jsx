@@ -5,7 +5,12 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import InputAdornment from '@mui/material/InputAdornment';
 import Grid from "@mui/material/Grid";
+import PersonIcon from '@mui/icons-material/Person';
+import EmailIcon from '@mui/icons-material/Email';
+import AddLocationIcon from '@mui/icons-material/AddLocation';
+import BadgeIcon from '@mui/icons-material/Badge';
 const CreateProfileForm = () => {
   const [role, setRole] = useState("");
   return (
@@ -26,6 +31,7 @@ const CreateProfileForm = () => {
           <Box sx={{ mt: 4 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} md={6}>
+
                 <TextField
                   margin='normal'
                   required
@@ -35,6 +41,13 @@ const CreateProfileForm = () => {
                   label='Name'
                   fullWidth
                   type='text'
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <PersonIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                   id='name'
                   autoComplete='name'
                 />
@@ -49,13 +62,20 @@ const CreateProfileForm = () => {
                   name='email'
                   label='email'
                   type='email'
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <EmailIcon  />
+                      </InputAdornment>
+                    ),
+                  }}
                   id='email'
                   autoComplete='email'
                 />
               </Grid>
               <Grid item xs={12}>
               <FormControl  fullWidth>
-              <InputLabel id='role'>ROLE</InputLabel>
+              <InputLabel className="role" id='role'>Role</InputLabel>
               <Select labelId='role'
               id='role'
                value='role'
@@ -80,6 +100,13 @@ const CreateProfileForm = () => {
             name='location'
             label='Location'
             type='location'
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <AddLocationIcon  />
+                </InputAdornment>
+              ),
+            }}
             id='location'
             autoComplete='location'
           />
@@ -90,6 +117,13 @@ const CreateProfileForm = () => {
             name='position'
             label='position'
             type='position'
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <BadgeIcon/>
+                </InputAdornment>
+              ),
+            }}
             id='position'
             autoComplete='position'
           />
