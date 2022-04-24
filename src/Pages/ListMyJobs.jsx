@@ -10,7 +10,7 @@ const Footer = React.lazy(() => import("../Components/BeforeLogin/Footer/"));
 
 const ListMyJobs = ({ matches }) => {
   const { myPostedJobs } = useContext(DataContext);
-//   console.log("matches", matches);
+  console.log(myPostedJobs);
 
   return (
     <>

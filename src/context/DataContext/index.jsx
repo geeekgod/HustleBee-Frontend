@@ -71,6 +71,9 @@ const DataContextProvider = ({ children }) => {
         if (res.data.msg === "jobs" && res.data.jobs) {
           setJobs(res.data.jobs);
         }
+        if (res.data.msg === "no jobs") {
+          setJobs([]);
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -84,6 +87,9 @@ const DataContextProvider = ({ children }) => {
         }
         if (res.data.msg === "my posted jobs" && res.data.my_posted_jobs) {
           setMyPostedJobs(res.data.my_posted_jobs);
+        }
+        if (res.data.msg === "you have no jobs posted") {
+          setMyPostedJobs([]);
         }
       })
       .catch((err) => console.log(err));

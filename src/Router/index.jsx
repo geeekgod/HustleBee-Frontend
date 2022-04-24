@@ -13,6 +13,7 @@ import ListMyJobs from "../Pages/ListMyJobs";
 import PostJobsPg from "../Pages/PostJobsPg";
 import SingleJobPg from "../Pages/SingleJobPg";
 import { useNavigate, useLocation } from "react-router-dom";
+import NotFoundPg from "../Pages/NotFoundPg";
 
 const RedirectLoader = ({ navigate }) => {
   setTimeout(() => {
@@ -50,31 +51,35 @@ const Router = ({ matches }) => {
           <Route index path="/" element={<Landing matches={matches} />} />
           <Route path="/signin" element={<SignInPg />} />
           <Route path="/signup" element={<SignUpPg />} />
+          <Route path="*" element={<NotFoundPg />} />
         </>
       );
     } else {
       if (!user) {
         return (
-          <Route
-            index
-            path="/"
-            element={
-              <>
-                {" "}
-                <Box
-                  sx={{
-                    display: "flex",
-                    height: "100vh",
-                    width: "100vw",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <CircularProgress />
-                </Box>
-              </>
-            }
-          />
+          <>
+            <Route
+              index
+              path="/"
+              element={
+                <>
+                  {" "}
+                  <Box
+                    sx={{
+                      display: "flex",
+                      height: "100vh",
+                      width: "100vw",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <CircularProgress />
+                  </Box>
+                </>
+              }
+            />
+            <Route path="*" element={<NotFoundPg />} />
+          </>
         );
       } else {
         if (profile) {
@@ -136,10 +141,17 @@ const Router = ({ matches }) => {
                   </>
                 ) : null}
               </Route>
+              <Route path="*" element={<NotFoundPg />} />
             </>
           );
         } else {
-          return <Route index path="/" element={<CreateProfile />} />;
+          return (
+            <>
+              {" "}
+              <Route index path="/" element={<CreateProfile />} />
+              <Route path="*" element={<NotFoundPg />} />
+            </>
+          );
         }
       }
     }

@@ -7,7 +7,7 @@ const CtaButton = styled.div`
   padding: 16px 25px;
   color: ${({ dark }) => (dark ? "#2667FF" : "#fff")};
   font-size: large;
-  margin-right: 20px;
+  margin-right: ${({ mr }) => (mr ? "20px" : "0px")};
   border: ${({ white }) => (white ? "1px solid #fff" : " 2px solid #2667FF")};
   cursor: pointer;
   display: flex;
