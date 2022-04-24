@@ -100,12 +100,44 @@ const DataContextProvider = ({ children }) => {
           getJobs();
           getMyPostedJobs();
           navigate("/jobs");
-          console.log("my posted jobs", myPostedJobs);
         }
       })
       .catch((err) => console.log(err));
   };
-  console.log("jobs", jobs);
+
+  const publishJob = (id) => {
+    hustleBeeApi
+      .get("/publish-job", {
+        headers: { token: token, jobid: id },
+      })
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.msg === "not authorized") {
+          authSignOut();
+        }
+        if (res.data.msg === "job published") {
+          getJobs();
+          getMyPostedJobs();
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const unPublishJob = (id) => {
+    hustleBeeApi
+      .get("/unpublish-job", { headers: { token: token, jobid: id } })
+      .then((res) => {
+        if (res.data.msg === "not authorized") {
+          authSignOut();
+        }
+        if (res.data.msg === "job unpublished") {
+          getJobs();
+          getMyPostedJobs();
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     getProfile();
     getUser();
@@ -115,7 +147,16 @@ const DataContextProvider = ({ children }) => {
 
   return (
     <DataContext.Provider
-      value={{ user, profile, jobs, createProfile, postJob }}
+      value={{
+        user,
+        profile,
+        jobs,
+        myPostedJobs,
+        createProfile,
+        postJob,
+        publishJob,
+        unPublishJob,
+      }}
     >
       {children}
     </DataContext.Provider>

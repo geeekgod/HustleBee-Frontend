@@ -9,6 +9,7 @@ import { DataContext } from "../context/DataContext";
 import { CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
 import ListJobs from "../Pages/ListJobs";
+import ListMyJobs from "../Pages/ListMyJobs";
 import PostJobsPg from "../Pages/PostJobsPg";
 const Router = ({ matches }) => {
   const { token, auth } = useContext(AuthContext);
@@ -55,10 +56,13 @@ const Router = ({ matches }) => {
               <Route path="/jobs">
                 <Route index element={<ListJobs matches={matches} />} />
                 {profile?.role === "Employer" ? (
-                  <Route
-                    path="post"
-                    element={<PostJobsPg matches={matches} />}
-                  />
+                  <>
+                    <Route
+                      path="post"
+                      element={<PostJobsPg matches={matches} />}
+                    />
+                    <Route path="posted" element={<ListMyJobs matches={matches} />} />
+                  </>
                 ) : null}
               </Route>
             </>

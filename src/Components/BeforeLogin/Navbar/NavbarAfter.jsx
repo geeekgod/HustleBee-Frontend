@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 const Navbar = ({ matches }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [openDrawer, setOpenDrawer] = useState(false);
-
   const openMenu = Boolean(anchorEl);
   const { authSignOut } = useContext(AuthContext);
   const { profile } = useContext(DataContext);
@@ -55,27 +54,31 @@ const Navbar = ({ matches }) => {
               />
             ) : (
               <Box sx={{ display: "flex", marginTop: "20px" }}>
-                <Typography
-                  sx={{
-                    marginRight: "20px",
-                    cursor: "pointer",
-                    color: "#616161",
-                    fontSize: "1.2rem",
-                  }}
-                >
-                  Home
-                </Typography>
+                <Link to="/">
+                  <Typography
+                    sx={{
+                      marginRight: "20px",
+                      cursor: "pointer",
+                      color: "#616161",
+                      fontSize: "1.2rem",
+                    }}
+                  >
+                    Home
+                  </Typography>
+                </Link>
 
-                <Typography
-                  sx={{
-                    marginRight: "20px",
-                    cursor: "pointer",
-                    color: "#616161",
-                    fontSize: "1.2rem",
-                  }}
-                >
-                  Browse Jobs
-                </Typography>
+                <Link to="/jobs">
+                  <Typography
+                    sx={{
+                      marginRight: "20px",
+                      cursor: "pointer",
+                      color: "#616161",
+                      fontSize: "1.2rem",
+                    }}
+                  >
+                    Browse Jobs
+                  </Typography>
+                </Link>
                 {profile.role === "Candidate" ? (
                   <Typography
                     sx={{
@@ -88,16 +91,18 @@ const Navbar = ({ matches }) => {
                     My Applied Jobs
                   </Typography>
                 ) : (
-                  <Typography
-                    sx={{
-                      marginRight: "20px",
-                      cursor: "pointer",
-                      color: "#616161",
-                      fontSize: "1.2rem",
-                    }}
-                  >
-                    My Posted Jobs
-                  </Typography>
+                  <Link to="/jobs/posted">
+                    <Typography
+                      sx={{
+                        marginRight: "20px",
+                        cursor: "pointer",
+                        color: "#616161",
+                        fontSize: "1.2rem",
+                      }}
+                    >
+                      My Posted Jobs
+                    </Typography>
+                  </Link>
                 )}
               </Box>
             )}

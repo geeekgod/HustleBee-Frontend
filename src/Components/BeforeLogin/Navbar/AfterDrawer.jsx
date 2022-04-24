@@ -43,7 +43,9 @@ const AfterDrawer = ({ openDrawer, setOpenDrawer }) => {
             {profile.role === "Candidate" ? (
               <ListItemText>My Applied Jobs</ListItemText>
             ) : (
-              <ListItemText>My Posted Jobs</ListItemText>
+              <Link to="/jobs/posted">
+                <ListItemText>My Posted Jobs</ListItemText>
+              </Link>
             )}
           </ListItemIcon>
         </ListItem>
