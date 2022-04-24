@@ -1,5 +1,4 @@
 import {
-  CircularProgress,
   Container,
   Grid,
   ListItem,
@@ -19,6 +18,7 @@ import Pagination from "@mui/material/Pagination";
 import { DataContext } from "../../context/DataContext";
 import CustomBtn from "../BeforeLogin/Main/CustomBtn";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import CtaButton from "../BeforeLogin/Main/CtaButtons";
 
 const Jobs = ({ data }) => {
   const location = useLocation();
@@ -48,7 +48,7 @@ const Jobs = ({ data }) => {
           </Box>
 
           {/* jobs*/}
-          {jobs ? (
+          {jobs?.length > 0 ? (
             jobs.map((i, key) => {
               return (
                 <Grid
@@ -237,17 +237,35 @@ const Jobs = ({ data }) => {
                 </Grid>
               );
             })
+          ) : location.pathname.includes("jobs/posted") ? (
+            <Box
+              sx={{
+                display: "flex",
+                height: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                py: 5,
+              }}
+            >
+              <Typography variant="h6">You have no jobs posted</Typography>
+              <Link to="/jobs/post">
+                <CustomBtn sx={{ my: 4 }}>Post your first Job</CustomBtn>
+              </Link>
+            </Box>
           ) : (
             <Box
               sx={{
                 display: "flex",
-                height: "100vh",
-                width: "100vw",
+                height: "100%",
                 justifyContent: "center",
                 alignItems: "center",
+                py: 5,
               }}
             >
-              <CircularProgress />
+              <Typography variant="h6">
+                There are no jobs to show you
+              </Typography>
             </Box>
           )}
         </Container>

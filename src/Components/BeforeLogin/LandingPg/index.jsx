@@ -39,10 +39,10 @@ const Home = ({
                 <SubTitle>{description}</SubTitle>
                 <BtnWrap>
                   <Link to="/signin">
-                    <CtaButton>{"Find a Bee"}</CtaButton>
+                    <CtaButton mr>{"Find a Bee"}</CtaButton>
                   </Link>
                   <Link to="signup">
-                    <CtaButton primary={true} dark={true} white={false}>
+                    <CtaButton primary={true} dark={true} white={false} mr>
                       {"Need a Job?"}
                     </CtaButton>
                   </Link>
