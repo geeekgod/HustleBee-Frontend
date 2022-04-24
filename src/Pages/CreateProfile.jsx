@@ -2,7 +2,7 @@ import { CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { Suspense } from "react";
 const CreateProfileForm = React.lazy(() =>
-  import("../Components/CreateProfileForm")
+import("../Components/CreateProfileForm/")
 );
 
 const CreateProfile = () => {
