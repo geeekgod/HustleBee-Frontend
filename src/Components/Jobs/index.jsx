@@ -17,10 +17,11 @@ import Stack from "@mui/material/Stack";
 import Pagination from "@mui/material/Pagination";
 import { DataContext } from "../../context/DataContext";
 import CustomBtn from "../BeforeLogin/Main/CustomBtn";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Jobs = ({ data }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { profile, publishJob, unPublishJob } = useContext(DataContext);
   return (
     <>
@@ -44,13 +45,20 @@ const Jobs = ({ data }) => {
           {data &&
             data.map((i, key) => {
               return (
-                <Grid className="Box" sx={{ mt: 4 }} item xs={12} key={key}>
+                <Grid
+                  className="Box"
+                  sx={{ mt: 4 }}
+                  item
+                  xs={12}
+                  key={`${key} ${i._id}`}
+                >
                   <Box
                     sx={{
                       backgroundColor: "rgba(0, 0, 0, 0.03)",
                       borderRadius: 5,
                     }}
                     p={3}
+                    onClick={(e) => navigate(`/job/${i._id}`)}
                   >
                     <Grid container>
                       <Grid
@@ -204,7 +212,8 @@ const Jobs = ({ data }) => {
                                 }}
                               >
                                 <CustomBtn
-                                  onClick={() => {
+                                  onClick={(e) => {
+                                    e.stopPropagation();
                                     i.published === 1
                                       ? unPublishJob(i._id)
                                       : publishJob(i._id);
