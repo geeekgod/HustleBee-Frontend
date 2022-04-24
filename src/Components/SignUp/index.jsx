@@ -57,7 +57,7 @@ const SignUp = () => {
         })
         .then((res) => {
           setMsg(res.data.msg);
-          if (res.data.msg === "Login Succeeded!") {
+          if (res.data.msg === "User added sucessfully") {
             setTimeout(() => {
               authSuccess(res.data.accessToken);
             }, 2000);

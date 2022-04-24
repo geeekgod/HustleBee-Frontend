@@ -13,10 +13,8 @@ import {
   TopLine,
 } from "./LandingElements";
 import React, { memo } from "react";
-
-import Stack from "@mui/material/Stack";
-
 import CtaButton from "../Main/CtaButtons";
+import { Link } from "react-router-dom";
 
 const Home = ({
   matches,
@@ -40,15 +38,14 @@ const Home = ({
                 <Heading>{headLine}</Heading>
                 <SubTitle>{description}</SubTitle>
                 <BtnWrap>
-                  <Stack spacing={3} direction="row">
+                  <Link to="/signin">
                     <CtaButton>{"Find a Bee"}</CtaButton>
-
+                  </Link>
+                  <Link to="signup">
                     <CtaButton primary={true} dark={true} white={false}>
                       {"Need a Job?"}
                     </CtaButton>
-                    {/* <Button variant="contained">Text</Button>
-                    <Button variant="contained">Contained</Button> */}
-                  </Stack>
+                  </Link>
                 </BtnWrap>
               </TextWrapper>
             </Column1>
