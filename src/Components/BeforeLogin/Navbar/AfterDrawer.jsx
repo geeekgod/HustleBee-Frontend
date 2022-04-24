@@ -11,6 +11,7 @@ import {
 import CustomBtn from "../Main/CustomBtn";
 import { AuthContext } from "../../../context/AuthContext";
 import { DataContext } from "../../../context/DataContext";
+import { Link } from "react-router-dom";
 const AfterDrawer = ({ openDrawer, setOpenDrawer }) => {
   const { authSignOut } = useContext(AuthContext);
   const { profile } = useContext(DataContext);
@@ -23,22 +24,28 @@ const AfterDrawer = ({ openDrawer, setOpenDrawer }) => {
       }}
     >
       <List>
-        <ListItem divider button onClick={() => setOpenDrawer(false)}>
-          <ListItemIcon sx={{ px: 5 }}>
-            <ListItemText>Home</ListItemText>
-          </ListItemIcon>
-        </ListItem>
-        <ListItem divider button onClick={() => setOpenDrawer(false)}>
-          <ListItemIcon sx={{ px: 5 }}>
-            <ListItemText>Browse Jobs</ListItemText>
-          </ListItemIcon>
-        </ListItem>
+        <Link to="/">
+          <ListItem divider button onClick={() => setOpenDrawer(false)}>
+            <ListItemIcon sx={{ px: 5 }}>
+              <ListItemText>Home</ListItemText>
+            </ListItemIcon>
+          </ListItem>
+        </Link>
+        <Link to="/jobs">
+          <ListItem divider button onClick={() => setOpenDrawer(false)}>
+            <ListItemIcon sx={{ px: 5 }}>
+              <ListItemText>Browse Jobs</ListItemText>
+            </ListItemIcon>
+          </ListItem>
+        </Link>
         <ListItem divider button onClick={() => setOpenDrawer(false)}>
           <ListItemIcon sx={{ px: 5 }}>
             {profile.role === "Candidate" ? (
               <ListItemText>My Applied Jobs</ListItemText>
             ) : (
-              <ListItemText>My Posted Jobs</ListItemText>
+              <Link to="/jobs/posted">
+                <ListItemText>My Posted Jobs</ListItemText>
+              </Link>
             )}
           </ListItemIcon>
         </ListItem>
@@ -50,6 +57,23 @@ const AfterDrawer = ({ openDrawer, setOpenDrawer }) => {
             justifyContent: "center",
           }}
         >
+          {profile?.role === "Employer" ? (
+            <Box sx={{ marginTop: "20px" }}>
+              <Link to="/jobs/post">
+                <CustomBtn
+                  sx={{
+                    width: "80%",
+                    margin: "auto",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  Post Jobs
+                </CustomBtn>
+              </Link>
+            </Box>
+          ) : null}
           <Box sx={{ marginTop: "20px" }}>
             <CustomBtn
               onClick={() => authSignOut()}

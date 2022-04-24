@@ -1,15 +1,11 @@
 import { CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { Suspense, useContext } from "react";
-import { DataContext } from "../context/DataContext";
-const NavbarAfter = React.lazy(() =>
-  import("../Components/BeforeLogin/Navbar/NavbarAfter")
-);
-const Jobs = React.lazy(() => import("../Components/Jobs"));
-const Footer = React.lazy(() => import("../Components/BeforeLogin/Footer/"));
+import React, { Suspense } from "react";
+const NavbarAfter = React.lazy(() => import("../Components/BeforeLogin/Navbar/NavbarAfter"));
+const PostJobs = React.lazy(() => import("../Components/PostJobs"));
+const Footer = React.lazy(() => import("../Components/BeforeLogin/Footer"));
 
-const ListJobs = ({ matches }) => {
-  const { jobs } = useContext(DataContext);
+const PostJobsPg = ({ matches }) => {
   return (
     <>
       <Suspense
@@ -28,11 +24,11 @@ const ListJobs = ({ matches }) => {
         }
       >
         <NavbarAfter matches={matches} />
-        <Jobs data={jobs} />
+        <PostJobs/>
         <Footer />
       </Suspense>
     </>
   );
 };
 
-export default ListJobs;
+export default PostJobsPg;
