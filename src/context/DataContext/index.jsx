@@ -111,7 +111,6 @@ const DataContextProvider = ({ children }) => {
         headers: { token: token, jobid: id },
       })
       .then((res) => {
-        console.log(res.data);
         if (res.data.msg === "not authorized") {
           authSignOut();
         }
@@ -138,6 +137,20 @@ const DataContextProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
+  const applyForJob = (id) => {
+    hustleBeeApi
+      .post("/apply", { jobid: id }, { headers: { token: token } })
+      .then((res) => {
+        if (res.data.msg === "not authorized") {
+          // authSignOut();
+        }
+        if (res.data.msg === "applied to the job") {
+          getJobs();
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     getProfile();
     getUser();
@@ -156,6 +169,7 @@ const DataContextProvider = ({ children }) => {
         postJob,
         publishJob,
         unPublishJob,
+        applyForJob,
       }}
     >
       {children}
