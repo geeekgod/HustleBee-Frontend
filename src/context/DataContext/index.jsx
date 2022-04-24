@@ -8,7 +8,7 @@ const DataContext = createContext();
 const DataContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
-  const { token, authSignOut } = useContext(AuthContext);
+  const { token, auth, authSignOut } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -142,7 +142,7 @@ const DataContextProvider = ({ children }) => {
       .post("/apply", { jobid: id }, { headers: { token: token } })
       .then((res) => {
         if (res.data.msg === "not authorized") {
-          // authSignOut();
+          authSignOut();
         }
         if (res.data.msg === "applied to the job") {
           getJobs();
@@ -152,10 +152,12 @@ const DataContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getProfile();
-    getUser();
-    getJobs();
-    getMyPostedJobs();
+    if (auth) {
+      getProfile();
+      getUser();
+      getJobs();
+      getMyPostedJobs();
+    }
   }, [token]);
 
   return (

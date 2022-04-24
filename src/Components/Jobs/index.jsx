@@ -1,4 +1,5 @@
 import {
+  CircularProgress,
   Container,
   Grid,
   ListItem,
@@ -7,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import WorkIcon from "@mui/icons-material/Work";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -23,6 +24,11 @@ const Jobs = ({ data }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { profile, publishJob, unPublishJob } = useContext(DataContext);
+  const [jobs, setJobs] = useState(null);
+
+  useEffect(() => {
+    setJobs(data.reverse());
+  }, [data]);
   return (
     <>
       <Box className="job-body" sx={{ pb: 10 }}>
@@ -42,8 +48,8 @@ const Jobs = ({ data }) => {
           </Box>
 
           {/* jobs*/}
-          {data &&
-            data.map((i, key) => {
+          {jobs ? (
+            jobs.map((i, key) => {
               return (
                 <Grid
                   className="Box"
@@ -230,7 +236,20 @@ const Jobs = ({ data }) => {
                   </Box>
                 </Grid>
               );
-            })}
+            })
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                height: "100vh",
+                width: "100vw",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          )}
         </Container>
       </Box>
     </>
