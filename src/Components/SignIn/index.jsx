@@ -47,7 +47,6 @@ const SignIn = () => {
           password: password,
         })
         .then((res) => {
-          console.log(res.data);
           if (res.data.msg) {
             setMsg(res.data.msg);
             if (res.data.msg === "Login Succeeded!") {

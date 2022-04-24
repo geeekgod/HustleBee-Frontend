@@ -6,6 +6,7 @@ import CustomBtn from "../Main/CustomBtn";
 import { AuthContext } from "../../../context/AuthContext";
 import { DataContext } from "../../../context/DataContext";
 import AfterDrawer from "./AfterDrawer";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ matches }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -95,7 +96,7 @@ const Navbar = ({ matches }) => {
                       fontSize: "1.2rem",
                     }}
                   >
-                      My Posted Jobs
+                    My Posted Jobs
                   </Typography>
                 )}
               </Box>
@@ -111,6 +112,17 @@ const Navbar = ({ matches }) => {
             >
               {!matches ? (
                 <Box sx={{ marginTop: "20px" }}>
+                  {profile?.role === "Employer" ? (
+                    <Link to="/jobs/post">
+                      <CustomBtn
+                        sx={{
+                          marginLeft: "10px",
+                        }}
+                      >
+                        Post Jobs
+                      </CustomBtn>
+                    </Link>
+                  ) : null}
                   <CustomBtn
                     onClick={() => authSignOut()}
                     sx={{

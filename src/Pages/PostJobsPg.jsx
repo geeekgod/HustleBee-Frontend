@@ -2,10 +2,10 @@ import { CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { Suspense } from "react";
 const NavbarAfter = React.lazy(() => import("../Components/BeforeLogin/Navbar/NavbarAfter"));
-const Jobs = React.lazy(() => import("../Components/Jobs"));
-const Footer = React.lazy(() => import("../Components/BeforeLogin/Footer/"));
+const PostJobs = React.lazy(() => import("../Components/PostJobs"));
+const Footer = React.lazy(() => import("../Components/BeforeLogin/Footer"));
 
-const ListJobs = ({ matches }) => {
+const PostJobsPg = ({ matches }) => {
   return (
     <>
       <Suspense
@@ -24,11 +24,11 @@ const ListJobs = ({ matches }) => {
         }
       >
         <NavbarAfter matches={matches} />
-        <Jobs />
+        <PostJobs/>
         <Footer />
       </Suspense>
     </>
   );
 };
 
-export default ListJobs;
+export default PostJobsPg;

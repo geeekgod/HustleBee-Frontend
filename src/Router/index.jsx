@@ -3,22 +3,19 @@ import { Route, Routes } from "react-router";
 import Landing from "../Pages/Landing";
 import SignInPg from "../Pages/SignInPg";
 import SignUpPg from "../Pages/SignUpPg";
-import Jobs from "../Components/Jobs";
 import CreateProfile from "../Pages/CreateProfile";
 import { AuthContext } from "../context/AuthContext";
 import { DataContext } from "../context/DataContext";
 import { CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
 import ListJobs from "../Pages/ListJobs";
+import PostJobsPg from "../Pages/PostJobsPg";
 const Router = ({ matches }) => {
   const { token, auth } = useContext(AuthContext);
   const { user, profile } = useContext(DataContext);
 
-  console.log(profile);
-
   const routerRender = () => {
     if (!auth) {
-      console.log(1);
       return (
         <>
           <Route index path="/" element={<Landing matches={matches} />} />
@@ -52,9 +49,19 @@ const Router = ({ matches }) => {
         );
       } else {
         if (profile) {
-          console.log(2);
           return (
-            <Route index path="/" element={<ListJobs matches={matches} />} />
+            <>
+              <Route index path="/" element={<ListJobs matches={matches} />} />
+              <Route path="/jobs">
+                <Route index element={<ListJobs matches={matches} />} />
+                {profile?.role === "Employer" ? (
+                  <Route
+                    path="post"
+                    element={<PostJobsPg matches={matches} />}
+                  />
+                ) : null}
+              </Route>
+            </>
           );
         } else {
           return <Route index path="/" element={<CreateProfile />} />;

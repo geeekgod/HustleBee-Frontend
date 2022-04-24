@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   const getToken = () => {
     let token = localStorage.getItem("token");
     return token;
@@ -22,13 +22,16 @@ const AuthContextProvider = ({ children }) => {
     if (token) {
       localStorage.setItem("token", token);
       setToken(getToken());
-      navigate("/")
+      navigate("/");
     }
   };
 
   const authSignOut = () => {
     localStorage.clear();
     setToken(getToken());
+    setTimeout(() => {
+      navigate("/signin");
+    }, 20);
   };
 
   useEffect(() => {

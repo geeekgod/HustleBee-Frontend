@@ -7,67 +7,18 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useContext } from "react";
 import IconButton from "@mui/material/IconButton";
 import WorkIcon from "@mui/icons-material/Work";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
-import WorkspacesIcon from "@mui/icons-material/Workspaces";
 import Stack from "@mui/material/Stack";
 import Pagination from "@mui/material/Pagination";
+import { DataContext } from "../../context/DataContext";
 
 const Jobs = () => {
-  const jobs = [
-    {
-      id: 0,
-      title: "Full Stack",
-      industry_category: "Software Engginering",
-      location: "Thane",
-      salary: "2000",
-      category: "Full Time",
-    },
-    {
-      id: 1,
-      title: "Full Stack",
-      industry_category: "Software Engginering",
-      location: "Thane",
-      salary: "2000",
-      category: "Full Time",
-    },
-    {
-      id: 2,
-      title: "Full Stack",
-      industry_category: "Software Engginering",
-      location: "Thane",
-      salary: "2000",
-      category: "Full Time",
-    },
-    {
-      id: 3,
-      title: "Full Stack",
-      industry_category: "Software Engginering",
-      location: "Thane",
-      salary: "2000",
-      category: "Full Time",
-    },
-    {
-      id: 4,
-      title: "Full Stack",
-      industry_category: "Software Engginering",
-      location: "Thane",
-      salary: "2000",
-      category: "Full Time",
-    },
-    {
-      id: 5,
-      title: "Full Stack",
-      industry_category: "Software Engginering",
-      location: "Thane",
-      salary: "2000",
-      category: "Full Time",
-    },
-  ];
+  const {jobs} = useContext(DataContext)
   return (
     <>
       <Box className="job-body" sx={{ pb: 10 }}>
