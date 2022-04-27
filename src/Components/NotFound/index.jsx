@@ -6,7 +6,7 @@ const NotFound = () => {
   const navigation = useNavigate();
 
   useEffect(() => {
-    document.title = "404 error | Lenxt";
+    document.title = "404 error | HustleBee";
   }, []);
   return (
     <>

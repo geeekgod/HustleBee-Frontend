@@ -19,6 +19,7 @@ import { DataContext } from "../../context/DataContext";
 import CustomBtn from "../BeforeLogin/Main/CustomBtn";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import CtaButton from "../BeforeLogin/Main/CtaButtons";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 const Jobs = ({ data }) => {
   const location = useLocation();
@@ -29,9 +30,13 @@ const Jobs = ({ data }) => {
   useEffect(() => {
     setJobs(data.reverse());
   }, [data]);
+
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <>
-      <Box className="job-body" sx={{ pb: 10 }}>
+      <Box className='job-body' sx={{ pb: 10 }}>
         <Container sx={{ mt: 4 }}>
           <Box
             sx={{
@@ -41,9 +46,9 @@ const Jobs = ({ data }) => {
             }}
           >
             {location.pathname === "/jobs/posted" ? (
-              <Typography variant="h4">Your Posted Jobs</Typography>
+              <Typography variant='h4'>Your Posted Jobs</Typography>
             ) : (
-              <Typography variant="h4">Find Jobs</Typography>
+              <Typography variant='h4'>Find Jobs</Typography>
             )}
           </Box>
 
@@ -52,7 +57,7 @@ const Jobs = ({ data }) => {
             jobs.map((i, key) => {
               return (
                 <Grid
-                  className="Box"
+                  className='Box'
                   sx={{ mt: 4 }}
                   item
                   xs={12}
@@ -79,22 +84,24 @@ const Jobs = ({ data }) => {
                             flexDirection: "row",
                           }}
                         >
-                          <Box
-                            sx={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                            }}
-                          >
-                            <IconButton sx={{ fontSize: 40, p: 1 }}>
-                              <PersonSearchIcon fontSize="20" />
-                            </IconButton>
-                          </Box>
+                          {!matches ? (
+                            <Box
+                              sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                              }}
+                            >
+                              <IconButton sx={{ fontSize: 40, p: 1 }}>
+                                <PersonSearchIcon fontSize='20' />
+                              </IconButton>
+                            </Box>
+                          ) : null}
                           <Box
                             sx={{
                               display: "flex",
                               flexDirection: "column",
-                              ml: 3,
+                              ml: !matches ? 3 : 0,
                               width: "100%",
                             }}
                           >
@@ -107,7 +114,10 @@ const Jobs = ({ data }) => {
                                 py: 1,
                               }}
                             >
-                              <Typography variant="subtitle1">
+                              <Typography
+                                className='titles'
+                                variant='subtitle1'
+                              >
                                 {i.title}
                               </Typography>
                             </Box>
@@ -128,20 +138,22 @@ const Jobs = ({ data }) => {
                                         <WorkIcon />
                                       </Box>
 
-                                      <ListItemText>
-                                        {i.industry_category}
+                                      <ListItemText className='titles'>
+                                        {i.industry_category} hey
                                       </ListItemText>
                                     </ListItemIcon>
                                   </ListItem>
                                 </Grid>
-                                <Grid item xs={6} md={4}>
+                                <Grid item xs={12} md={4}>
                                   <ListItem>
                                     <ListItemIcon>
                                       <Box mr={0.3}>
                                         <LocationOnIcon />
                                       </Box>
 
-                                      <ListItemText>{i.location}</ListItemText>
+                                      <ListItemText>
+                                        {i.location}
+                                      </ListItemText>
                                     </ListItemIcon>
                                   </ListItem>
                                 </Grid>
@@ -168,8 +180,8 @@ const Jobs = ({ data }) => {
                               }}
                             >
                               <Typography
-                                variant="caption"
-                                display="block"
+                                variant='caption'
+                                display='block'
                                 sx={{
                                   color: "#616161",
                                   backgroundColor: "rgb(251 222 30 / 90%)",
@@ -182,8 +194,8 @@ const Jobs = ({ data }) => {
                               </Typography>
 
                               <Typography
-                                variant="caption"
-                                display="block"
+                                variant='caption'
+                                display='block'
                                 sx={{
                                   color: "#616161",
                                   backgroundColor: "rgb(251 222 30 / 90%)",
@@ -248,8 +260,8 @@ const Jobs = ({ data }) => {
                 py: 5,
               }}
             >
-              <Typography variant="h6">You have no jobs posted</Typography>
-              <Link to="/jobs/post">
+              <Typography variant='h6'>You have no jobs posted</Typography>
+              <Link to='/jobs/post'>
                 <CustomBtn sx={{ my: 4 }}>Post your first Job</CustomBtn>
               </Link>
             </Box>
@@ -263,7 +275,7 @@ const Jobs = ({ data }) => {
                 py: 5,
               }}
             >
-              <Typography variant="h6">
+              <Typography variant='h6'>
                 There are no jobs to show you
               </Typography>
             </Box>
