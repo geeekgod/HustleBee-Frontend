@@ -44,11 +44,17 @@ button.MuiButton-root:hover{
 /* .MuiContainer-root{
   margin-top:0 !important;
 } */
-.MuiFormLabel-root-MuiInputLabel-root{
+.MuiFormLabel-root-MuiInputLabel-root,.MuiSvgIcon-root{
   color:rgb(38, 103, 255);
 }
 .role{
   background-color: white;
+}
+.titles{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align:left;
 }
 
 
