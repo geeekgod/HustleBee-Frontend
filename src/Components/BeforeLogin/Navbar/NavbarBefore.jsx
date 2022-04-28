@@ -39,7 +39,7 @@ const Navbar = ({ matches }) => {
             >
               <img
                 style={{ width: "50%" }}
-                src="/static/img/hustlebee.png"
+                src="/static/img/hustleBee_main.png"
                 alt="hustlebee"
               />
             </Box>

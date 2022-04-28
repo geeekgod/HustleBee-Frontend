@@ -43,7 +43,7 @@ const Home = ({
                   </Link>
                   <Link to="signup">
                     <CtaButton primary={true} dark={true} white={false} mr>
-                      {"Need a Job?"}
+                      {"Apply as a Bee?"}
                     </CtaButton>
                   </Link>
                 </BtnWrap>
