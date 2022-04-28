@@ -13,12 +13,9 @@ import WorkIcon from "@mui/icons-material/Work";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
-import Stack from "@mui/material/Stack";
-import Pagination from "@mui/material/Pagination";
 import { DataContext } from "../../context/DataContext";
 import CustomBtn from "../BeforeLogin/Main/CustomBtn";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import CtaButton from "../BeforeLogin/Main/CtaButtons";
 import { useTheme, useMediaQuery } from "@mui/material";
 
 const Jobs = ({ data }) => {
@@ -28,7 +25,7 @@ const Jobs = ({ data }) => {
   const [jobs, setJobs] = useState(null);
 
   useEffect(() => {
-    setJobs(data.reverse());
+    setJobs(data);
   }, [data]);
 
   const theme = useTheme();
@@ -36,7 +33,7 @@ const Jobs = ({ data }) => {
 
   return (
     <>
-      <Box className='job-body' sx={{ pb: 10 }}>
+      <Box className="job-body" sx={{ pb: 10 }}>
         <Container sx={{ mt: 4 }}>
           <Box
             sx={{
@@ -46,9 +43,9 @@ const Jobs = ({ data }) => {
             }}
           >
             {location.pathname === "/jobs/posted" ? (
-              <Typography variant='h4'>Your Posted Jobs</Typography>
+              <Typography variant="h4">Your Posted Jobs</Typography>
             ) : (
-              <Typography variant='h4'>Find Jobs</Typography>
+              <Typography variant="h4">Find Jobs</Typography>
             )}
           </Box>
 
@@ -57,7 +54,7 @@ const Jobs = ({ data }) => {
             jobs.map((i, key) => {
               return (
                 <Grid
-                  className='Box'
+                  className="Box"
                   sx={{ mt: 4 }}
                   item
                   xs={12}
@@ -69,7 +66,11 @@ const Jobs = ({ data }) => {
                       borderRadius: 5,
                     }}
                     p={3}
-                    onClick={(e) => navigate(`/job/${i._id}`)}
+                    onClick={(e) => {
+                      if (i.employer !== profile.email)
+                        navigate(`/job/${i._id}`);
+                      else navigate(`/posted-job/${i._id}`);
+                    }}
                   >
                     <Grid container>
                       <Grid
@@ -93,7 +94,7 @@ const Jobs = ({ data }) => {
                               }}
                             >
                               <IconButton sx={{ fontSize: 40, p: 1 }}>
-                                <PersonSearchIcon fontSize='20' />
+                                <PersonSearchIcon fontSize="20" />
                               </IconButton>
                             </Box>
                           ) : null}
@@ -115,8 +116,8 @@ const Jobs = ({ data }) => {
                               }}
                             >
                               <Typography
-                                className='titles'
-                                variant='subtitle1'
+                                className="titles"
+                                variant="subtitle1"
                               >
                                 {i.title}
                               </Typography>
@@ -129,7 +130,6 @@ const Jobs = ({ data }) => {
                                 mx: 1,
                               }}
                             >
-                              {/* 1 */}
                               <Grid container spacing={1}>
                                 <Grid item xs={12} md={4}>
                                   <ListItem>
@@ -138,8 +138,8 @@ const Jobs = ({ data }) => {
                                         <WorkIcon />
                                       </Box>
 
-                                      <ListItemText className='titles'>
-                                        {i.industry_category} hey
+                                      <ListItemText className="titles">
+                                        {i.industry_category}
                                       </ListItemText>
                                     </ListItemIcon>
                                   </ListItem>
@@ -151,9 +151,7 @@ const Jobs = ({ data }) => {
                                         <LocationOnIcon />
                                       </Box>
 
-                                      <ListItemText>
-                                        {i.location}
-                                      </ListItemText>
+                                      <ListItemText>{i.location}</ListItemText>
                                     </ListItemIcon>
                                   </ListItem>
                                 </Grid>
@@ -180,8 +178,8 @@ const Jobs = ({ data }) => {
                               }}
                             >
                               <Typography
-                                variant='caption'
-                                display='block'
+                                variant="caption"
+                                display="block"
                                 sx={{
                                   color: "#616161",
                                   backgroundColor: "rgb(251 222 30 / 90%)",
@@ -194,8 +192,8 @@ const Jobs = ({ data }) => {
                               </Typography>
 
                               <Typography
-                                variant='caption'
-                                display='block'
+                                variant="caption"
+                                display="block"
                                 sx={{
                                   color: "#616161",
                                   backgroundColor: "rgb(251 222 30 / 90%)",
@@ -260,8 +258,8 @@ const Jobs = ({ data }) => {
                 py: 5,
               }}
             >
-              <Typography variant='h6'>You have no jobs posted</Typography>
-              <Link to='/jobs/post'>
+              <Typography variant="h6">You have no jobs posted</Typography>
+              <Link to="/jobs/post">
                 <CustomBtn sx={{ my: 4 }}>Post your first Job</CustomBtn>
               </Link>
             </Box>
@@ -275,7 +273,7 @@ const Jobs = ({ data }) => {
                 py: 5,
               }}
             >
-              <Typography variant='h6'>
+              <Typography variant="h6">
                 There are no jobs to show you
               </Typography>
             </Box>

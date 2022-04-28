@@ -10,6 +10,7 @@ import { CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
 import ListJobs from "../Pages/ListJobs";
 import ListMyJobs from "../Pages/ListMyJobs";
+import AppliedJobs from "../Pages/AppliedJobs";
 import PostJobsPg from "../Pages/PostJobsPg";
 import SingleJobPg from "../Pages/SingleJobPg";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -35,8 +36,9 @@ const RedirectLoader = ({ navigate }) => {
 };
 
 const Router = ({ matches }) => {
-  const { token, auth } = useContext(AuthContext);
-  const { user, profile, jobs, myPostedJobs } = useContext(DataContext);
+  const { auth } = useContext(AuthContext);
+  const { user, profile, jobs, myPostedJobs, profileExist, myAppliedJobs } =
+    useContext(DataContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -82,7 +84,7 @@ const Router = ({ matches }) => {
           </>
         );
       } else {
-        if (profile) {
+        if (profileExist) {
           return (
             <>
               <Route index path="/" element={<ListJobs matches={matches} />} />
@@ -92,6 +94,26 @@ const Router = ({ matches }) => {
               />
               <Route
                 path="job/:slug"
+                element={
+                  jobs ? (
+                    <SingleJobPg matches={matches} />
+                  ) : (
+                    <Box
+                      sx={{
+                        display: "flex",
+                        height: "100vh",
+                        width: "100vw",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <CircularProgress />
+                    </Box>
+                  )
+                }
+              />
+              <Route
+                path="posted-job/:slug"
                 element={
                   jobs ? (
                     <SingleJobPg matches={matches} />
@@ -139,7 +161,30 @@ const Router = ({ matches }) => {
                       }
                     />
                   </>
-                ) : null}
+                ) : (
+                  <>
+                    <Route
+                      path="applied"
+                      element={
+                        myAppliedJobs ? (
+                          <AppliedJobs matches={matches} />
+                        ) : (
+                          <Box
+                            sx={{
+                              display: "flex",
+                              height: "100vh",
+                              width: "100vw",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <CircularProgress />
+                          </Box>
+                        )
+                      }
+                    />
+                  </>
+                )}
               </Route>
               <Route path="*" element={<NotFoundPg />} />
             </>

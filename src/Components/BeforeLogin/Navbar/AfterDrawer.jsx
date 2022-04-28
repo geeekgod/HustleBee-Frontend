@@ -41,7 +41,9 @@ const AfterDrawer = ({ openDrawer, setOpenDrawer }) => {
         <ListItem divider button onClick={() => setOpenDrawer(false)}>
           <ListItemIcon sx={{ px: 5 }}>
             {profile.role === "Candidate" ? (
+              <Link to="/jobs/applied">
               <ListItemText>My Applied Jobs</ListItemText>
+            </Link>
             ) : (
               <Link to="/jobs/posted">
                 <ListItemText>My Posted Jobs</ListItemText>

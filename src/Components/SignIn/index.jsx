@@ -35,7 +35,7 @@ const SignIn = () => {
     if (!errs && submitted) {
       setSubmitted(false);
     }
-  }, [email, password]);
+  }, [email, password, errs, submitted]);
 
   const _handleSubmit = (e) => {
     e.preventDefault();

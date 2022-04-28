@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
@@ -12,10 +12,10 @@ const AuthContextProvider = ({ children }) => {
 
   const [token, setToken] = useState(getToken());
 
-  const authCheck = () => {
+  const authCheck = useCallback(() => {
     if (token) return true;
     else return false;
-  };
+  }, [token]);
   const [auth, setAuth] = useState(authCheck());
 
   const authSuccess = (token) => {
@@ -26,17 +26,18 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
-  const authSignOut = () => {
+  const authSignOut = useCallback(() => {
     localStorage.clear();
     setToken(getToken());
     setTimeout(() => {
       navigate("/signin");
     }, 20);
-  };
+  }, [navigate]);
 
   useEffect(() => {
-    setAuth(authCheck());
-  }, [token]);
+    let authC = authCheck();
+    setAuth(authC);
+  }, [token, authCheck]);
   return (
     <AuthContext.Provider value={{ token, auth, authSuccess, authSignOut }}>
       {children}

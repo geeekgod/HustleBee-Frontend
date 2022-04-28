@@ -40,7 +40,7 @@ const SignUp = () => {
     if (!errs && submitted) {
       setSubmitted(false);
     }
-  }, [name, email, password]);
+  }, [name, email, password, errs, submitted]);
 
   const _handleSubmit = (e) => {
     setName(name.trim());

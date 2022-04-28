@@ -8,8 +8,8 @@ const NavbarAfter = React.lazy(() =>
 const Jobs = React.lazy(() => import("../Components/Jobs"));
 const Footer = React.lazy(() => import("../Components/BeforeLogin/Footer/"));
 
-const ListMyJobs = ({ matches }) => {
-  const { myPostedJobs } = useContext(DataContext);
+const AppliedJobs = ({ matches }) => {
+  const { myAppliedJobs } = useContext(DataContext);
   return (
     <>
       <Suspense
@@ -28,11 +28,11 @@ const ListMyJobs = ({ matches }) => {
         }
       >
         <NavbarAfter matches={matches} />
-        <Jobs data={myPostedJobs} />
+        <Jobs data={myAppliedJobs} />
         <Footer />
       </Suspense>
     </>
   );
 };
 
-export default React.memo(ListMyJobs);
+export default React.memo(AppliedJobs);

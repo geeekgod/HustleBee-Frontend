@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import hustleBeeApi from "../../api/hustleBeeApi";
 import { AuthContext } from "../AuthContext";
@@ -8,14 +14,16 @@ const DataContext = createContext();
 const DataContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
+  const [profileExist, setProfileExist] = useState(false);
   const { token, auth, authSignOut } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   const [jobs, setJobs] = useState(null);
   const [myPostedJobs, setMyPostedJobs] = useState(null);
+  const [myAppliedJobs, setMyAppliedJobs] = useState(null);
 
-  const getUser = () => {
+  const getUser = useCallback(() => {
     hustleBeeApi
       .get("/user", { headers: { token: token } })
       .then((res) => {
@@ -27,9 +35,9 @@ const DataContextProvider = ({ children }) => {
         }
       })
       .catch((err) => console.log(err));
-  };
+  }, [token, authSignOut]);
 
-  const getProfile = () => {
+  const getProfile = useCallback(() => {
     hustleBeeApi
       .get("/profile", { headers: { token: token } })
       .then((res) => {
@@ -38,10 +46,14 @@ const DataContextProvider = ({ children }) => {
         }
         if (res.data.msg === "profile found" && res.data.profile) {
           setProfile(res.data.profile);
+          setProfileExist(true);
+        }
+        if (res.data.msg === "Profile not created!") {
+          setProfileExist(false);
         }
       })
       .catch((err) => console.log(err));
-  };
+  }, [token, authSignOut]);
 
   const createProfile = (role, location, position) => {
     hustleBeeApi
@@ -61,7 +73,7 @@ const DataContextProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  const getJobs = () => {
+  const getJobs = useCallback(() => {
     hustleBeeApi
       .get("/jobs", { headers: { token: token } })
       .then((res) => {
@@ -69,16 +81,17 @@ const DataContextProvider = ({ children }) => {
           authSignOut();
         }
         if (res.data.msg === "jobs" && res.data.jobs) {
-          setJobs(res.data.jobs);
+          let t_jobs = res.data.jobs.reverse();
+          setJobs(t_jobs);
         }
         if (res.data.msg === "no jobs") {
           setJobs([]);
         }
       })
       .catch((err) => console.log(err));
-  };
+  }, [token, authSignOut]);
 
-  const getMyPostedJobs = () => {
+  const getMyPostedJobs = useCallback(() => {
     hustleBeeApi
       .get("/my-posted-jobs", { headers: { token: token } })
       .then((res) => {
@@ -86,14 +99,33 @@ const DataContextProvider = ({ children }) => {
           authSignOut();
         }
         if (res.data.msg === "my posted jobs" && res.data.my_posted_jobs) {
-          setMyPostedJobs(res.data.my_posted_jobs);
+          let posted_jobs = res.data.my_posted_jobs.reverse();
+          setMyPostedJobs(posted_jobs);
         }
         if (res.data.msg === "you have no jobs posted") {
           setMyPostedJobs([]);
         }
       })
       .catch((err) => console.log(err));
-  };
+  }, [token, authSignOut]);
+
+  const getMyAppliedJobs = useCallback(() => {
+    hustleBeeApi
+      .get("/my-applied", { headers: { token: token } })
+      .then((res) => {
+        if (res.data.msg === "not authorized") {
+          authSignOut();
+        }
+        if (res.data.msg === "applied jobs" && res.data.jobs) {
+          let applied_jobs = res.data.jobs.reverse();
+          setMyAppliedJobs(applied_jobs);
+        }
+        if (res.data.msg === "no applied jobs") {
+          setMyAppliedJobs([]);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, [token, authSignOut]);
 
   const postJob = (data) => {
     hustleBeeApi
@@ -157,14 +189,44 @@ const DataContextProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
+  const deleteJob = (id) => {
+    hustleBeeApi
+      .get(`/job/delete/${id}`, { headers: { token: token } })
+      .then((res) => {
+        if (res.data.msg === "not authorized") {
+          authSignOut();
+        }
+        if (res.data.msg === "job deleted successfully") {
+          getMyPostedJobs();
+          navigate("/jobs/posted");
+          getJobs();
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     if (auth) {
       getProfile();
       getUser();
       getJobs();
-      getMyPostedJobs();
     }
-  }, [token]);
+  }, [token, getProfile, getUser, getJobs, auth]);
+
+  useEffect(() => {
+    if (profile && profile.role) {
+      switch (profile.role) {
+        case "Employer":
+          getMyPostedJobs();
+          break;
+        case "Candidate":
+          getMyAppliedJobs();
+          break;
+        default:
+          break;
+      }
+    }
+  }, [profile, getMyPostedJobs, getMyAppliedJobs]);
 
   return (
     <DataContext.Provider
@@ -173,11 +235,14 @@ const DataContextProvider = ({ children }) => {
         profile,
         jobs,
         myPostedJobs,
+        profileExist,
+        myAppliedJobs,
         createProfile,
         postJob,
         publishJob,
         unPublishJob,
         applyForJob,
+        deleteJob
       }}
     >
       {children}

@@ -42,7 +42,7 @@ const Navbar = ({ matches }) => {
               <img
                 style={{ width: "50%" }}
                 src="/static/img/hustlebee.png"
-                alt=""
+                alt="hustlebee"
               />
             </Box>
 
@@ -80,16 +80,18 @@ const Navbar = ({ matches }) => {
                   </Typography>
                 </Link>
                 {profile.role === "Candidate" ? (
-                  <Typography
-                    sx={{
-                      marginRight: "20px",
-                      cursor: "pointer",
-                      color: "#616161",
-                      fontSize: "1.2rem",
-                    }}
-                  >
-                    My Applied Jobs
-                  </Typography>
+                  <Link to="/jobs/applied">
+                    <Typography
+                      sx={{
+                        marginRight: "20px",
+                        cursor: "pointer",
+                        color: "#616161",
+                        fontSize: "1.2rem",
+                      }}
+                    >
+                      My Applied Jobs
+                    </Typography>
+                  </Link>
                 ) : (
                   <Link to="/jobs/posted">
                     <Typography

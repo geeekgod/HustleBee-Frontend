@@ -134,7 +134,7 @@ const PostJobs = () => {
                   fullWidth
                   value={salary}
                   name="email"
-                  label="Job Salary"
+                  label="Job Salary /mo"
                   type="number"
                   id="salary"
                   autoComplete="salary"

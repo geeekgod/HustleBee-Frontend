@@ -8,26 +8,49 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { DataContext } from "../../context/DataContext";
 import CustomBtn from "../BeforeLogin/Main/CustomBtn";
 import WorkIcon from "@mui/icons-material/Work";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const JobDetails = () => {
-  const { jobs, profile, user, applyForJob } = useContext(DataContext);
+  const { jobs, profile, user, applyForJob, myPostedJobs, deleteJob } =
+    useContext(DataContext);
+  const location = useLocation();
   const [job, setJob] = useState(null);
+  const [jobTitle, setJobTitle] = useState("");
   const params = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (job && job?.title) {
+      setJobTitle(job.title);
+    }
+  }, [job]);
 
   useEffect(() => {
     if (profile) {
       if (params?.slug && jobs) {
-        let newJob = jobs.find((e) => e._id.includes(params.slug));
-        setJob(newJob);
+        if (location.pathname.includes("/posted-job/") && myPostedJobs) {
+          let newJob = myPostedJobs.find((e) => e._id === params.slug);
+          setJob(newJob);
+        } else {
+          let newJob = jobs.find((e) => e._id === params.slug);
+          setJob(newJob);
+        }
+        if (jobTitle) {
+          document.title = `Job Details | ${jobTitle.slice(0, 10)}...`;
+        }
       }
     }
-  }, [params]);
+  }, [params, jobs, profile, jobTitle, location, myPostedJobs]);
+
+  useEffect(() => {
+    if (job === undefined) navigate(`/job-notfound/${params.slug}`);
+  }, [job, navigate, params]);
 
   return (
     <div>
@@ -75,7 +98,7 @@ const JobDetails = () => {
                     >
                       {/* 1 */}
                       <Grid container spacing={1}>
-                        <Grid item xs={12} md={4}>
+                        <Grid item sm={12} md={6}>
                           <ListItem>
                             <ListItemIcon>
                               <Box mr={0.3}>
@@ -88,7 +111,7 @@ const JobDetails = () => {
                             </ListItemIcon>
                           </ListItem>
                         </Grid>
-                        <Grid item xs={6} md={4}>
+                        <Grid item xs={12} sm={6} md={6}>
                           <ListItem>
                             <ListItemIcon>
                               <Box mr={0.3}>
@@ -99,7 +122,7 @@ const JobDetails = () => {
                             </ListItemIcon>
                           </ListItem>
                         </Grid>
-                        <Grid item xs={4} md={4}>
+                        <Grid item xs={12} sm={6} md={6}>
                           <ListItem>
                             <ListItemIcon>
                               <Box mr={0.3}>
@@ -109,6 +132,20 @@ const JobDetails = () => {
                             </ListItemIcon>
                           </ListItem>
                         </Grid>
+
+                        {job.employer === profile.email ? (
+                          <Grid item xs={12} sm={6} md={6}>
+                            <CustomBtn
+                              variant="outlined"
+                              startIcon={<DeleteIcon />}
+                              onClick={() => {
+                                deleteJob(job._id);
+                              }}
+                            >
+                              Delete Job
+                            </CustomBtn>
+                          </Grid>
+                        ) : null}
                       </Grid>
                     </Box>
 
@@ -223,7 +260,7 @@ const JobDetails = () => {
               </Typography>
               <Typography variant="body1">{job.content}</Typography>
               <Box>
-                {profile.role === "Employer" ? (
+                {profile.email === job.employer ? (
                   <>
                     <Typography
                       variant="h6"
