@@ -91,8 +91,8 @@ const Navbar = ({ matches }) => {
                     Categories
                   </Typography>
                 </a>
-
-                <Typography
+               <Link to="/contactus">
+               <Typography
                   sx={{
                     marginRight: "20px",
                     cursor: "pointer",
@@ -102,6 +102,8 @@ const Navbar = ({ matches }) => {
                 >
                   Contact
                 </Typography>
+               </Link>
+             
               </Box>
             )}
 

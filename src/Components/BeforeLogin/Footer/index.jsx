@@ -79,8 +79,12 @@ const Footer = () => {
                 </FooterLinksItems>
                 <FooterLinksItems>
                   <FooterLinkTitle>About HustleBee </FooterLinkTitle>
-                  <FooterLink>About us</FooterLink>
-                  <FooterLink>Contact us</FooterLink>
+                  <FooterLink>
+                    <LinkR to="/aboutus">About us</LinkR>
+                  </FooterLink>
+                  <FooterLink>
+                    <LinkR to="/contactus">Contact us</LinkR>
+                  </FooterLink>
                 </FooterLinksItems>
               </FooterLinksWrapper>
             </FooterLinksContainer>
