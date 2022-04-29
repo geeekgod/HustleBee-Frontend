@@ -6,14 +6,12 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import CustomBtn from "../../Components/BeforeLogin/Main/CustomBtn";
 import emailjs from "emailjs-com";
-
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import { SignInContainer } from "../SignIn/SignInElements";
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
-import { ContactUswrapper } from "./ContactusElements";
+import { ContactContainer, ContactUswrapper } from "./ContactusElements";
 
 const ContactUs = () => {
+  document.title = "Contact US | HustleBee";
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("800"));
   const [email, setEmail] = useState("");
@@ -56,7 +54,7 @@ const ContactUs = () => {
   return (
     <>
       <Box id='contactus'>
-        <SignInContainer>
+        <ContactContainer>
           <Grid
             sx={{
               display: "flex",
@@ -117,7 +115,6 @@ const ContactUs = () => {
                     label='Email Address'
                     name='email'
                     autoComplete='email'
-                    autoFocus
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     error={submitted && !/\S+@\S+\.\S+/.test(email.trim())}
@@ -135,7 +132,6 @@ const ContactUs = () => {
                     label='Subject'
                     name='subject'
                     autoComplete='subject'
-                    autoFocus
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
                     error={submitted && subject.trim().length < 4}
@@ -183,7 +179,6 @@ const ContactUs = () => {
               </Box>
             </Container>
           </Grid>
-          {/* </Box> */}
           <ContactUswrapper>
             <img
               src='/static/img/Contactus-amico.png'
@@ -191,7 +186,7 @@ const ContactUs = () => {
               alt='Contact Us'
             />
           </ContactUswrapper>
-        </SignInContainer>
+        </ContactContainer>
       </Box>
     </>
   );

@@ -15,8 +15,8 @@ import PostJobsPg from "../Pages/PostJobsPg";
 import SingleJobPg from "../Pages/SingleJobPg";
 import { useNavigate, useLocation } from "react-router-dom";
 import NotFoundPg from "../Pages/NotFoundPg";
-import ContactUs from "../Components/Contactus/index";
-import Aboutus from "../Components/Aboutus";
+import AboutUsPg from "../Pages/AboutUsPg";
+import ContactUsPg from "../Pages/ContactUsPg";
 
 const RedirectLoader = ({ navigate }) => {
   setTimeout(() => {
@@ -55,9 +55,6 @@ const Router = ({ matches }) => {
           <Route index path="/" element={<Landing matches={matches} />} />
           <Route path="/signin" element={<SignInPg />} />
           <Route path="/signup" element={<SignUpPg />} />
-          <Route path="/contactus" element={<ContactUs/>} />
-          <Route path="/aboutus" element={<Aboutus/>} />
-     
           <Route path="*" element={<NotFoundPg />} />
         </>
       );
@@ -206,7 +203,13 @@ const Router = ({ matches }) => {
       }
     }
   };
-  return <Routes>{routerRender()}</Routes>;
+  return (
+    <Routes>
+      {routerRender()}
+      <Route path="/contactus" element={<ContactUsPg />} />
+      <Route path="/aboutus" element={<AboutUsPg />} />
+    </Routes>
+  );
 };
 
 export default Router;

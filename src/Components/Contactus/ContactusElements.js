@@ -1,5 +1,10 @@
 import styled from "@emotion/styled";
 
+export const ContactContainer = styled.div`
+  display:flex;
+  height:100vh;
+`;
+
 export const ContactUswrapper = styled.div`
   width:50%;
   height:100%;

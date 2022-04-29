@@ -26,8 +26,8 @@ const Footer = () => {
             <SocialLogo>
               <img
                 style={{ width: "50%" }}
-                src='/static/img/HustleBee_main.png'
-                alt='hustlebee'
+                src="/static/img/HustleBee_main.png"
+                alt="hustlebee"
               />
             </SocialLogo>
             <FooterLinksContainer>
@@ -36,16 +36,16 @@ const Footer = () => {
                   <FooterLinkTitle>Categories</FooterLinkTitle>
 
                   <FooterLink>
-                    <LinkH to='/#categories'>Full-Time</LinkH>
+                    <LinkH to="/#categories">Full-Time</LinkH>
                   </FooterLink>
                   <FooterLink>
-                    <LinkH to='/#categories'>Part-Time</LinkH>
+                    <LinkH to="/#categories">Part-Time</LinkH>
                   </FooterLink>
                   <FooterLink>
-                    <LinkH to='/#categories'>Internship</LinkH>
+                    <LinkH to="/#categories">Internship</LinkH>
                   </FooterLink>
                   <FooterLink>
-                    <LinkH to='/#categories'>Freelance</LinkH>
+                    <LinkH to="/#categories">Freelance</LinkH>
                   </FooterLink>
                 </FooterLinksItems>
 
@@ -53,13 +53,13 @@ const Footer = () => {
                   <FooterLinkTitle>Hire</FooterLinkTitle>
 
                   <FooterLink>
-                    <LinkR to='/signin'>Be a Recuiter</LinkR>
+                    <LinkR to="/signin">Be a Recuiter</LinkR>
                   </FooterLink>
                   <FooterLink>
-                    <LinkR to='/signin'>Hire a Bee</LinkR>
+                    <LinkR to="/signin">Hire a Bee</LinkR>
                   </FooterLink>
                   <FooterLink>
-                    <LinkR to='/signin'>Find Talent</LinkR>
+                    <LinkR to="/signin">Find Talent</LinkR>
                   </FooterLink>
                 </FooterLinksItems>
               </FooterLinksWrapper>
@@ -67,21 +67,23 @@ const Footer = () => {
                 <FooterLinksItems>
                   <FooterLinkTitle>Apply </FooterLinkTitle>
                   <FooterLink>
-                    <LinkR to='/signin'>Be a Bee</LinkR>
+                    <LinkR to="/signin">Be a Bee</LinkR>
                   </FooterLink>
                   <FooterLink>
-                    <LinkR to='/signin'>Apply For Jobs</LinkR>
+                    <LinkR to="/signin">Apply For Jobs</LinkR>
                   </FooterLink>
 
                   <FooterLink>
-                    <LinkR to='/signin'>Find Work</LinkR>
+                    <LinkR to="/signin">Find Work</LinkR>
                   </FooterLink>
                 </FooterLinksItems>
                 <FooterLinksItems>
                   <FooterLinkTitle>About HustleBee </FooterLinkTitle>
-                  <FooterLink>About us</FooterLink>
                   <FooterLink>
-                    <LinkR to='/contactus'>Contact us</LinkR>
+                    <LinkR to="/aboutus">About us</LinkR>
+                  </FooterLink>
+                  <FooterLink>
+                    <LinkR to="/contactus">Contact us</LinkR>
                   </FooterLink>
                 </FooterLinksItems>
               </FooterLinksWrapper>
