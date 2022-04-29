@@ -8,7 +8,7 @@ import CustomBtn from "../../Components/BeforeLogin/Main/CustomBtn";
 import emailjs from "emailjs-com";
 
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import {SignInContainer } from "../SignIn/SignInElements";
+import { SignInContainer } from "../SignIn/SignInElements";
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
 import { ContactUswrapper } from "./ContactusElements";
@@ -20,11 +20,12 @@ const ContactUs = () => {
   const [submitted, setSubmitted] = useState(false);
   const [errs, setErrs] = useState(false);
   const [message, setMessage] = useState("");
-  const [msg,setMsg]=useState("");
-
+  const [msg, setMsg] = useState("");
+  const [name, setName] = useState("");
+  const [subject, setSubject] = useState("");
   useEffect(() => {
     setMsg("");
-    if (!/\S+@\S+\.\S+/.test(email.trim())||message.trim().length < 5) {
+    if (!/\S+@\S+\.\S+/.test(email.trim()) || message.trim().length < 5) {
       setErrs(true);
     } else {
       setErrs(false);
@@ -32,21 +33,24 @@ const ContactUs = () => {
     if (!errs && submitted) {
       setSubmitted(false);
     }
-  }, [email,message, errs, submitted]);
+  }, [email, message, errs, submitted]);
 
   const _handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
     if (!errs) {
-        emailjs.sendForm('gmail', 'template_t3zl56g',e.target, 'ZtFHM7VqW-A6lzmlt')
-        .then((result) => {
+      emailjs
+        .sendForm("gmail", "template_t3zl56g", e.target, "ZtFHM7VqW-A6lzmlt")
+        .then(
+          (result) => {
             console.log(result.text);
-        }, (error) => {
+          },
+          (error) => {
             console.log(error.text);
-        });
-     
+          }
+        );
     }
-    e.target.reset()
+    e.target.reset();
   };
 
   return (
@@ -90,6 +94,25 @@ const ContactUs = () => {
                     margin='normal'
                     required
                     fullWidth
+                    id='name'
+                    label='Name'
+                    name='name'
+                    autoComplete='name'
+                    autoFocus
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    error={submitted && name.trim().length < 5}
+                    helperText={
+                      submitted && name.trim().length < 5
+                        ? "Name should be more than 6 characters"
+                        : null
+                    }
+                  />
+
+                  <TextField
+                    margin='normal'
+                    required
+                    fullWidth
                     id='email'
                     label='Email Address'
                     name='email'
@@ -104,14 +127,32 @@ const ContactUs = () => {
                         : null
                     }
                   />
-                  
+                  <TextField
+                    margin='normal'
+                    required
+                    fullWidth
+                    id='subject'
+                    label='Subject'
+                    name='subject'
+                    autoComplete='subject'
+                    autoFocus
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                    error={submitted && subject.trim().length < 4}
+                    helperText={
+                      submitted && message.trim().length < 5
+                        ? "Subject should be more than 4 characters"
+                        : null
+                    }
+                  />
+
                   <TextField
                     id='message'
                     placeholder='Enter Your Message (Must be more than 5 characters)'
                     multiline
                     margin='normal'
                     name='message'
-                    label='Message'
+                    label='Message*'
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     error={submitted && message.trim().length < 5}
