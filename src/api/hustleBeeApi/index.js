@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://hustlebee-api.geeekgod.ml",
+  baseURL: "https://lenxt-api.onrender.com",
 });
